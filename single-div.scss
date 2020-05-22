@@ -1,0 +1,48 @@
+@mixin x($wd, $ht, $dp) {
+  transform-style: preserve-3d;
+  height: $dp;
+  width: $ht;
+  transform: translateZ(#{-$dp}) rotateX(-90deg) translateZ(#{$wd - $dp});
+  transform-origin: bottom;
+}
+
+@mixin y($wd, $ht, $dp) {
+  transform-style: preserve-3d;
+  height: $wd;
+  width: $dp;
+  transform: translateZ(#{-$dp}) rotateY(90deg) translateZ(#{$ht - $dp});
+  transform-origin: right;
+}
+
+@mixin z($wd, $ht, $dp) {
+  transform-style: preserve-3d;
+  height: $wd;
+  width: $ht;
+  transform: translateZ($dp);
+}
+
+@mixin cube($wd, $ht, $dp) {
+  @include z($wd, $ht, $dp);
+  // border: 0.1em solid black;
+  background-color: white;
+
+  &:before {
+    content: '';
+    @include y($wd, $ht, $dp);
+    position: absolute;
+    // border: 0.1em solid black;
+    background-color: black;
+    left: 0;
+    top: 0;
+  }
+
+  &:after {
+    content: '';
+    @include x($wd, $ht, $dp);
+    position: absolute;
+    // border: 0.1em solid black;
+    background-color: pink;
+    left: 0;
+    top: 0;
+  }
+}
