@@ -56,6 +56,7 @@ p {
   color: black;
   font-size: 1.2rem;
   max-width: 90%;
+  margin-bottom: calc(1em + env(safe-area-inset-bottom));
 
   span {
     color: crimson;
