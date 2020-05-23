@@ -1,20 +1,12 @@
-// https://codepen.io/johan/pen/yGDoI
-
-@use 'sass:math';
-@use 'single-div';
-
 body,
 html {
   height: 100%;
+  margin: 0;
+  padding: 0;
+
   display: grid;
   background: coral;
 }
-
-$cell-wd: 8px;
-$cell-ht: 8px;
-$rows: 16;
-$cols: 16;
-$gap: 12px;
 
 main {
   margin: auto;
@@ -23,64 +15,4 @@ main {
 #city {
   transform: rotateX(45deg) rotateZ(45deg);
   transform-style: preserve-3d;
-
-  display: grid;
-  grid-template-rows: repeat($rows, $cell-ht);
-  grid-template-columns: repeat($cols, $cell-wd);
-  row-gap: $gap;
-  column-gap: $gap;
-  grid-auto-flow: dense;
 }
-
-@for $i from 1 through 20 {
-  $cells-wide: 1 + random(4);
-  $cells-tall: 1 + random(4);
-
-  .cube:nth-child(#{$i}) {
-    $width: $cells-wide * $cell-wd + ($cells-wide - 1) * $gap;
-    $height: $cells-tall * $cell-ht + ($cells-tall - 1) * $gap;
-
-    @if random(10) <= 4 {
-      width: $width;
-      height: $height;
-      background: paleturquoise;
-      // border: 1px solid black;
-    } @else {
-      $depth: 20px + random(3) * random(100) * 1px;
-      @include single-div.cube($width, $height, $depth);
-    }
-    grid-row: span $cells-tall;
-    grid-column: span $cells-wide;
-  }
-}
-
-// @for $i from 1 through 20 {
-//   .cube:nth-child(#{$i}) {
-//     position: relative;
-//     $cells-wide: 2 + random(5);
-//     $cells-tall: 2 + random(5);
-
-//     @if random(10) <= 4 {
-//       .cubez {
-//         width: 100%;
-//         height: 100%;
-//         background: white;
-//         border: 1px solid black;
-//       }
-//       .cubex,
-//       .cubey {
-//         display: none;
-//       }
-//     } @else {
-//       $height: 20px + random(100) * 1px;
-//       @include cube(
-//         $cells-tall * $cell-ht + ($cells-tall - 1) * $gap,
-//         $cells-wide * $cell-wd + ($cells-wide - 1) * $gap,
-//         $height
-//       );
-//     }
-
-//     grid-row: span $cells-tall;
-//     grid-column: span $cells-wide;
-//   }
-// }

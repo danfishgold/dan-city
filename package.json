@@ -4,9 +4,12 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "jss": "^10.1.1",
+    "jss-preset-default": "^10.1.1",
     "parcel": "^1.12.4"
   },
   "devDependencies": {
-    "sass": "^1.26.5"
+    "sass": "^1.26.5",
+    "typescript": "^3.9.3"
   }
 }
