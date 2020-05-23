@@ -1,23 +1,23 @@
 @mixin x($wd, $ht, $dp) {
   transform-style: preserve-3d;
   height: $dp;
-  width: $ht;
-  transform: translateZ(#{-$dp}) rotateX(-90deg) translateZ(#{$wd - $dp});
+  width: $wd;
+  transform: translateZ(#{-$dp}) rotateX(-90deg) translateZ(#{$ht - $dp});
   transform-origin: bottom;
 }
 
 @mixin y($wd, $ht, $dp) {
   transform-style: preserve-3d;
-  height: $wd;
+  height: $ht;
   width: $dp;
-  transform: translateZ(#{-$dp}) rotateY(90deg) translateZ(#{$ht - $dp});
+  transform: translateZ(#{-$dp}) rotateY(90deg) translateZ(#{$wd - $dp});
   transform-origin: right;
 }
 
 @mixin z($wd, $ht, $dp) {
   transform-style: preserve-3d;
-  height: $wd;
-  width: $ht;
+  height: $ht;
+  width: $wd;
   transform: translateZ($dp);
 }
 
