@@ -3,20 +3,20 @@ import { JssStyle } from 'jss'
 // https://codepen.io/johan/pen/yGDoI
 export function box(x, y, width, height, depth): JssStyle {
   return {
-    left: `${x}px`,
-    top: `${y}px`,
-    width: `${width}px`,
-    height: `${height}px`,
-    transform: `translateZ(${depth}px)`,
+    left: `${x}`,
+    top: `${y}`,
+    width: `${width}`,
+    height: `${height}`,
+    transform: `translateZ(${depth})`,
     '&::before': {
-      height: `${depth}px`,
-      width: `${width}px`,
-      transform: `translateZ(-${depth}px) rotateX(-90deg) translateZ(calc(${height}px - ${depth}px))`,
+      height: `${depth}`,
+      width: `${width}`,
+      transform: `translateZ(-${depth}) rotateX(-90deg) translateZ(calc(${height} - ${depth}))`,
     },
     '&::after': {
-      height: `${height}px`,
-      width: `${depth}px`,
-      transform: `translateZ(-${depth}px) rotateY(90deg) translateZ(calc(${width}px - ${depth}px))`,
+      height: `${height}`,
+      width: `${depth}`,
+      transform: `translateZ(-${depth}) rotateY(90deg) translateZ(calc(${width} - ${depth}))`,
     },
   }
 }
@@ -25,6 +25,7 @@ export const allBoxes: JssStyle = {
   position: 'absolute',
   backgroundColor: 'white',
   transformStyle: 'preserve-3d',
+  border: '2px solid white',
   '&::before': {
     content: '""',
     transformOrigin: 'bottom',
@@ -33,6 +34,7 @@ export const allBoxes: JssStyle = {
     left: '0',
     top: '0',
     backgroundColor: 'pink',
+    border: '2px solid pink',
   },
   '&::after': {
     content: '""',
@@ -42,19 +44,21 @@ export const allBoxes: JssStyle = {
     left: '0',
     top: '0',
     backgroundColor: 'black',
+    border: '2px solid black',
   },
 }
 
 export function flat(x, y, width, height): JssStyle {
   return {
-    left: `${x}px`,
-    top: `${y}px`,
-    width: `${width}px`,
-    height: `${height}px`,
+    left: `${x}`,
+    top: `${y}`,
+    width: `${width}`,
+    height: `${height}`,
   }
 }
 
 export const allFlats: JssStyle = {
   backgroundColor: 'paleturquoise',
   position: 'absolute',
+  border: '2px solid paleturquoise',
 }

@@ -9,7 +9,11 @@ function random(min: number, max: number) {
   return min + Math.floor((max + 1 - min) * Math.random())
 }
 
-const sideCellCount = 15
+function randomFloat(min: number, max: number) {
+  return min + (max - min) * Math.random()
+}
+
+const sideCellCount = 18
 
 const engine = new LayoutEngine(document.body, sideCellCount)
 
@@ -28,8 +32,8 @@ let blocks = rects.map((rect) => {
   }
 })
 
-const cellSide = 10
-const gap = 10
+const cellSide = 0.5
+const gap = 0.7
 const citySide = sideCellCount * cellSide + (sideCellCount - 1) * gap
 
 let boxStyles: JssStyle = { ...styles.allBoxes }
@@ -41,10 +45,21 @@ blocks.forEach((block, idx) => {
   const x0 = (cellSide + gap) * block.x
   const y0 = (cellSide + gap) * block.y
   if (block.isFlat) {
-    flatStyles[`&:nth-child(${idx + 1})`] = styles.flat(x0, y0, wd, ht)
+    flatStyles[`&:nth-child(${idx + 1})`] = styles.flat(
+      `${x0}em`,
+      `${y0}em`,
+      `${wd}em`,
+      `${ht}em`
+    )
   } else {
-    const dp = 20 + random(1, 300)
-    boxStyles[`&:nth-child(${idx + 1})`] = styles.box(x0, y0, wd, ht, dp)
+    const dp = randomFloat(0, 20)
+    boxStyles[`&:nth-child(${idx + 1})`] = styles.box(
+      `${x0}em`,
+      `${y0}em`,
+      `${wd}em`,
+      `${ht}em`,
+      `${dp}em`
+    )
   }
 })
 
