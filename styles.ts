@@ -25,7 +25,6 @@ export const allBoxes: JssStyle = {
   position: 'absolute',
   backgroundColor: 'white',
   transformStyle: 'preserve-3d',
-  border: '2px solid white',
   '&::before': {
     content: '""',
     transformOrigin: 'bottom',
@@ -34,7 +33,6 @@ export const allBoxes: JssStyle = {
     left: '0',
     top: '0',
     backgroundColor: 'pink',
-    border: '2px solid pink',
   },
   '&::after': {
     content: '""',
@@ -44,7 +42,6 @@ export const allBoxes: JssStyle = {
     left: '0',
     top: '0',
     backgroundColor: 'black',
-    border: '2px solid black',
   },
 }
 
@@ -60,5 +57,4 @@ export function flat(x, y, width, height): JssStyle {
 export const allFlats: JssStyle = {
   backgroundColor: 'paleturquoise',
   position: 'absolute',
-  border: '2px solid paleturquoise',
 }

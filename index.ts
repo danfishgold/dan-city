@@ -14,6 +14,9 @@ function randomFloat(min: number, max: number) {
 }
 
 const sideCellCount = 18
+const cellSide = 0.5
+const gap = 0.7
+const citySide = sideCellCount * cellSide + (sideCellCount - 1) * gap
 
 const engine = new LayoutEngine(document.body, sideCellCount)
 
@@ -31,10 +34,6 @@ let blocks = rects.map((rect) => {
     isFlat: random(1, 10) <= 4,
   }
 })
-
-const cellSide = 0.5
-const gap = 0.7
-const citySide = sideCellCount * cellSide + (sideCellCount - 1) * gap
 
 let boxStyles: JssStyle = { ...styles.allBoxes }
 let flatStyles: JssStyle = { ...styles.allFlats }
@@ -73,8 +72,9 @@ const boxClass = sheet.classes.box
 const flatClass = sheet.classes.flat
 
 const city = document.getElementById('city')
-city.style.width = `${citySide}px`
-city.style.height = `${citySide}px`
+
+city.style.width = `${citySide}em`
+city.style.height = `${citySide}em`
 blocks.forEach(({ isFlat }) => {
   if (isFlat) {
     const flat = document.createElement('div')
@@ -84,5 +84,31 @@ blocks.forEach(({ isFlat }) => {
     const box = document.createElement('div')
     box.classList.add(boxClass)
     city.appendChild(box)
+  }
+})
+
+let lastClampedScroll = 0
+const maxNegativeScroll = 40
+const title = document.querySelector('h1')
+
+window.addEventListener('scroll', (e) => {
+  const pos = window.scrollY
+  const maxPositiveScroll = title.offsetTop
+  const clamped = Math.min(maxPositiveScroll, Math.max(-maxNegativeScroll, pos))
+  if (clamped == lastClampedScroll) {
+    return
+  } else {
+    lastClampedScroll = clamped
+  }
+  if (clamped > 0) {
+    city.style.transform = `rotateX(${
+      (clamped / maxPositiveScroll) * 75
+    }deg) rotateZ(45deg)`
+    lastClampedScroll = clamped
+  } else {
+    city.style.transform = `scale(${
+      1 + (clamped / maxNegativeScroll) * 0.15
+    }) rotateZ(45deg)`
+    lastClampedScroll = clamped
   }
 })
