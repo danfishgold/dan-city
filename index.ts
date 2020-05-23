@@ -87,11 +87,11 @@ blocks.forEach(({ isFlat }) => {
   }
 })
 
-let lastClampedScroll = 0
+let lastClampedScroll = null
 const maxNegativeScroll = 40
 const title = document.querySelector('h1')
 
-window.addEventListener('scroll', (e) => {
+function transformBasedOnScroll() {
   const pos = window.scrollY
   const maxPositiveScroll = title.offsetTop
   const clamped = Math.min(maxPositiveScroll, Math.max(-maxNegativeScroll, pos))
@@ -111,4 +111,7 @@ window.addEventListener('scroll', (e) => {
     }) rotateZ(45deg)`
     lastClampedScroll = clamped
   }
-})
+}
+
+transformBasedOnScroll()
+window.addEventListener('scroll', transformBasedOnScroll)
