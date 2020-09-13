@@ -48,6 +48,50 @@ body {
   #city {
     transform: rotateZ(45deg);
     transform-style: preserve-3d;
+
+    .box {
+      position: absolute;
+      transform-style: preserve-3d;
+      background-color: white;
+      top: var(--box-top);
+      left: var(--box-left);
+      width: var(--box-width);
+      height: var(--box-height);
+      transform: translateZ(var(--box-depth));
+
+      &:before {
+        top: 0;
+        left: 0;
+        width: var(--box-width);
+        height: var(--box-depth);
+        transform: translateZ(calc(-1 * var(--box-depth))) rotateX(-90deg)
+          translateZ(calc(var(--box-height) - var(--box-depth)));
+        content: '';
+        position: absolute;
+        transform-style: preserve-3d;
+        background-color: pink;
+        transform-origin: bottom;
+      }
+
+      &:after {
+        top: 0;
+        left: 0;
+        width: var(--box-depth);
+        height: var(--box-height);
+        transform: translateZ(calc(-1 * var(--box-depth))) rotateY(90deg)
+          translateZ(calc(var(--box-width) - var(--box-depth)));
+        content: '';
+        position: absolute;
+        transform-style: preserve-3d;
+        background-color: black;
+        transform-origin: right;
+      }
+    }
+
+    .flat {
+      position: absolute;
+      background-color: paleturquoise;
+    }
   }
 }
 

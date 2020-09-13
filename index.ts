@@ -5,7 +5,10 @@ import * as random from './random'
 import jss, { JssStyle, StyleSheet } from 'jss'
 import preset from 'jss-preset-default'
 
-jss.setup(preset())
+jss.setup({
+  ...preset(),
+  createGenerateId: () => (rule) => rule.key,
+})
 
 const sideCellCount = 18
 const cellSide = 0.5
@@ -32,8 +35,8 @@ function fillCity(city: HTMLElement) {
     }
   })
 
-  let boxStyles: JssStyle = { ...styles.allBoxes }
-  let flatStyles: JssStyle = { ...styles.allFlats }
+  let boxStyles: JssStyle = {}
+  let flatStyles: JssStyle = {}
 
   blocks.forEach((block, idx) => {
     const wd = cellSide * block.width + gap * (block.width - 1)
@@ -45,7 +48,7 @@ function fillCity(city: HTMLElement) {
         `${x0}em`,
         `${y0}em`,
         `${wd}em`,
-        `${ht}em`
+        `${ht}em`,
       )
     } else {
       const dp = random.float(2, 20)
@@ -54,7 +57,7 @@ function fillCity(city: HTMLElement) {
         `${y0}em`,
         `${wd}em`,
         `${ht}em`,
-        `${dp}em`
+        `${dp}em`,
       )
     }
   })
@@ -69,19 +72,16 @@ function fillCity(city: HTMLElement) {
     })
     .attach()
 
-  const boxClass = sheet.classes.box
-  const flatClass = sheet.classes.flat
-
   city.style.width = `${citySide}em`
   city.style.height = `${citySide}em`
   blocks.forEach(({ isFlat }) => {
     if (isFlat) {
       const flat = document.createElement('div')
-      flat.classList.add(flatClass)
+      flat.classList.add('flat')
       city.appendChild(flat)
     } else {
       const box = document.createElement('div')
-      box.classList.add(boxClass)
+      box.classList.add('box')
       city.appendChild(box)
     }
   })
