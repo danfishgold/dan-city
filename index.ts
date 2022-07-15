@@ -74,7 +74,7 @@ function fillCity(city: HTMLElement) {
       return [{ ...blockRect, depth: random.float(10, 18), isFlat: false }]
     }
 
-    const scale = 50
+    const scale = 20
     const block = new Block(
       Math.round(blockRect.width * scale),
       Math.round(blockRect.height * scale),
