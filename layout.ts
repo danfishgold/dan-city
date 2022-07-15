@@ -31,7 +31,7 @@ export default class LayoutEngine {
     return gridContainer
   }
 
-  addRect(width: number, height: number): null | Rect {
+  addRect({ width, height }: { width: number; height: number }): null | Rect {
     const child = document.createElement('div')
     child.style.gridRow = `span ${height}`
     child.style.gridColumn = `span ${width}`
