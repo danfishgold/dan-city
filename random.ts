@@ -29,4 +29,20 @@ export function choice<T>(options: T[], weightFn: (item: T) => number): T {
       return options[index]
     }
   }
+  throw new Error(`Impossible state`)
+}
+
+export function sample<T>(options: T[], count: number): T[] {
+  if (count > options.length) {
+    throw new Error(
+      `Not enough options to sample ${count} items (list has ${options.length} items)`,
+    )
+  }
+  if (count === options.length) {
+    return options
+  }
+
+  const factors = new Array(options.length).fill(0).map(() => Math.random())
+  const threshold = Array.from(factors).sort()[count - 1]
+  return options.filter((_, index) => factors[index] <= threshold)
 }

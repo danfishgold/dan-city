@@ -1,4 +1,4 @@
-export function range(a: number, b: number) {
+export function range(a: number, b: number): number[] {
   if (a > b) {
     return range(b, a)
   }
@@ -7,7 +7,7 @@ export function range(a: number, b: number) {
 
 export class PointSet {
   _set: Set<string>
-  constructor(pts = []) {
+  constructor(pts: [number, number][] = []) {
     this._set = new Set(pts.map((pt) => JSON.stringify(pt)))
   }
 

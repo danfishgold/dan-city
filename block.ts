@@ -113,48 +113,74 @@ export class Block {
   }
 
   randomPoints(pointCount: number) {
-    const circumfrence = (this.width + this.height) * 2
-    const widthPointCount = Math.round(
-      (this.width / circumfrence) * (pointCount + 2),
-    )
-    const heightPointCount = Math.round(
-      (this.height / circumfrence) * (pointCount + 2),
-    )
-    console.log([widthPointCount, heightPointCount])
-    const wiggle =
-      Math.min(this.width / widthPointCount, this.height / heightPointCount) *
-      0.4
+    const corners: [number, number][] = [
+      [0, 0],
+      [0, this.height - 1],
+      [this.width - 1, 0],
+      [this.width - 1, this.height - 1],
+    ]
 
-    const lefts = range(0, widthPointCount).flatMap((index) => {
-      if (index === 0) {
-        return [0]
-      }
-      if (index === 1 || index === widthPointCount - 1) {
-        return []
-      }
+    if (pointCount <= 4) {
+      return new PointSet(random.sample(corners, pointCount))
+    }
+
+    const circumfrence = (this.width + this.height) * 2
+    const horizontalPointCount = Math.ceil(
+      (this.width / circumfrence) * pointCount,
+    )
+    const verticalPointCount = Math.ceil(
+      (this.height / circumfrence) * pointCount,
+    )
+    const wiggle =
+      Math.min(
+        this.width / horizontalPointCount,
+        this.height / verticalPointCount,
+      ) * 0.4
+
+    const middleHorizontals: [number, number][] = range(
+      2,
+      horizontalPointCount + 1,
+    ).flatMap((index) => {
+      const left1 = Math.round(
+        (index / (horizontalPointCount + 2)) * this.width +
+          random.wiggle(wiggle),
+      )
+      const left2 = Math.round(
+        (index / (horizontalPointCount + 2)) * this.width +
+          random.wiggle(wiggle),
+      )
+
       return [
-        Math.round(
-          (index / widthPointCount) * this.width + random.wiggle(wiggle),
-        ),
+        [left1, 0],
+        [left2, this.height - 1],
       ]
     })
 
-    const tops = range(0, heightPointCount).flatMap((index) => {
-      if (index === 1 || index === heightPointCount - 1) {
-        return []
-      }
-      return [Math.round((index / heightPointCount) * this.height)]
+    const middleVerticals: [number, number][] = range(
+      2,
+      verticalPointCount + 1,
+    ).flatMap((index) => {
+      const top1 = Math.round(
+        (index / (verticalPointCount + 2)) * this.height +
+          random.wiggle(wiggle),
+      )
+      const top2 = Math.round(
+        (index / (verticalPointCount + 2)) * this.height +
+          random.wiggle(wiggle),
+      )
+
+      return [
+        [0, top1],
+        [this.width - 1, top2],
+      ]
     })
 
     return new PointSet([
-      ...lefts.flatMap((left) => [
-        [this.width - 1 - left, 0],
-        [left, this.height - 1],
-      ]),
-      ...tops.flatMap((top) => [
-        [0, top],
-        [this.width - 1, this.height - 1 - top],
-      ]),
+      ...corners,
+      ...random.sample(
+        [...middleHorizontals, ...middleVerticals],
+        pointCount - 4,
+      ),
     ])
   }
 
@@ -205,7 +231,7 @@ export class Block {
         direction,
         building.pointsTowardsDirection(direction),
       ]),
-    )
+    ) as Record<Direction, [number, number][]>
 
     const validDirections = allDirections.filter((direction) =>
       expansions[direction].every((pt) => this.isFree(pt)),

@@ -11,33 +11,27 @@ jss.setup({
   createGenerateId: () => (rule) => rule.key,
 })
 
-const sideCellCount = 18
+const sideCellCount =
+  parseInt(new URLSearchParams(location.search).get('a') ?? '') || 18
 const cellSide = 0.5
 const gap = 0.7
 const citySide = sideCellCount * cellSide + (sideCellCount - 1) * gap
+const blockResolution = 20
+const cityResolution = 18 / sideCellCount
 
-const city = document.getElementById('city')
+const city = document.getElementById('city')!
 let sheet: StyleSheet | null = null
 
-function randomDensity(): 'high' | 'mid' | 'low' {
+type Density = 'superhigh' | 'high' | 'mid' | 'low'
+
+function randomDensity(area: number): Density {
   const number = random.int(1, 10)
   if (number >= 8) {
-    return 'high'
+    return area <= 10 ? 'superhigh' : 'high'
   } else if (number <= 3) {
     return 'low'
   } else {
     return 'mid'
-  }
-}
-
-function randomBuildingDepth(density: 'high' | 'mid' | 'low'): number {
-  switch (density) {
-    case 'high':
-      return random.float(4, 8)
-    case 'mid':
-      return random.float(1.5, 3)
-    case 'low':
-      return random.float(0.75, 1.5)
   }
 }
 
@@ -47,6 +41,38 @@ function randomBlockSize() {
   return random.int(0, 2) === 0
     ? { width: side1, height: side2 }
     : { height: side1, width: side2 }
+}
+
+function blockProperties(
+  density: Density,
+  blockArea: number,
+): { buildingCount: number; depth: () => number; retreatFactor: () => number } {
+  switch (density) {
+    case 'superhigh':
+      return {
+        buildingCount: 1,
+        depth: () => random.float(9, 18),
+        retreatFactor: () => random.float(0.05, 0.1),
+      }
+    case 'high':
+      return {
+        buildingCount: random.int(2, 5),
+        depth: () => random.float(3, 8),
+        retreatFactor: () => random.float(0.1, 0.2),
+      }
+    case 'mid':
+      return {
+        buildingCount: Math.round(blockArea * 0.7 + random.wiggle(2)),
+        depth: () => random.float(1.5, 2),
+        retreatFactor: () => random.float(0.025, 0.1),
+      }
+    case 'low':
+      return {
+        buildingCount: Math.round(blockArea * 0.7 + random.wiggle(2)),
+        depth: () => random.float(0.75, 1.5),
+        retreatFactor: () => random.float(0.025, 0.1),
+      }
+  }
 }
 
 function fillCity(city: HTMLElement) {
@@ -67,30 +93,26 @@ function fillCity(city: HTMLElement) {
   }))
   const buildings = blocks.flatMap((blockRect) => {
     const blockArea = blockRect.width * blockRect.height
-    const density = randomDensity()
 
-    // small tower block => make the entire block a tower
-    if (density === 'high' && blockArea < 10) {
-      return [{ ...blockRect, depth: random.float(10, 18), isFlat: false }]
-    }
-
-    const scale = 20
     const block = new Block(
-      Math.round(blockRect.width * scale),
-      Math.round(blockRect.height * scale),
+      Math.round(blockRect.width * blockResolution),
+      Math.round(blockRect.height * blockResolution),
     )
 
+    const density = randomDensity(blockArea)
+    const { buildingCount, depth, retreatFactor } = blockProperties(
+      density,
+      blockArea,
+    )
     return block
-      .makeBuildings(
-        density === 'high' ? random.int(1, 6) : Math.round(blockArea * 0.7),
-      )
-      .map((building) => block.retreat(building, random.float(0.05, 0.1)))
+      .makeBuildings(buildingCount)
+      .map((building) => block.retreat(building, retreatFactor()))
       .map((building) => ({
-        x: blockRect.x + building.left / scale,
-        y: blockRect.y + building.top / scale,
-        width: building.width / scale,
-        height: building.height / scale,
-        depth: randomBuildingDepth(density),
+        x: (blockRect.x + building.left / blockResolution) * cityResolution,
+        y: (blockRect.y + building.top / blockResolution) * cityResolution,
+        width: (building.width / blockResolution) * cityResolution,
+        height: (building.height / blockResolution) * cityResolution,
+        depth: depth(),
         isFlat: random.int(1, 10) <= 1,
       }))
   })
@@ -100,6 +122,7 @@ function fillCity(city: HTMLElement) {
 
   buildings.forEach((building, idx) => {
     if (building.isFlat) {
+      // @ts-ignore
       flatStyles[`&:nth-child(${idx + 1})`] = styles.flat(
         `${building.x}em`,
         `${building.y}em`,
@@ -107,6 +130,7 @@ function fillCity(city: HTMLElement) {
         `${building.height}em`,
       )
     } else {
+      // @ts-ignore
       boxStyles[`&:nth-child(${idx + 1})`] = styles.box(
         `${building.x}em`,
         `${building.y}em`,
@@ -149,12 +173,11 @@ city.onclick = () => {
   fillCity(city)
 }
 
-let lastClampedScroll = null
+let lastClampedScroll: number | null = null
 const maxNegativeScroll = 40
-const title = document.querySelector('h1')
+const title = document.querySelector('h1')!
 
 function transformBasedOnScroll() {
-  // city?.style.transform = `rotateX(45deg) rotateZ(45deg)`
   const pos = window.scrollY
   const maxPositiveScroll = title.offsetTop
   const clamped = Math.min(maxPositiveScroll, Math.max(-maxNegativeScroll, pos))
