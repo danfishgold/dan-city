@@ -12,7 +12,7 @@ jss.setup({
 })
 
 const sideCellCount =
-  parseInt(new URLSearchParams(location.search).get('a') ?? '') || 18
+  parseInt(new URLSearchParams(location.search).get('a') ?? '') || 12
 const cellSide = 0.5
 const gap = 0.7
 const citySide = sideCellCount * cellSide + (sideCellCount - 1) * gap
