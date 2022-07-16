@@ -12,9 +12,9 @@ jss.setup({
 })
 
 const sideCellCount =
-  parseInt(new URLSearchParams(location.search).get('a') ?? '') || 12
+  parseInt(new URLSearchParams(location.search).get('a') ?? '') || 13
 const cellSide = 0.5
-const gap = 0.7
+const gap = 0.4
 const citySide = sideCellCount * cellSide + (sideCellCount - 1) * gap
 const blockResolution = 20
 const cityResolution = 18 / sideCellCount
@@ -26,7 +26,7 @@ type Density = 'superhigh' | 'high' | 'mid' | 'low'
 
 function randomDensity(area: number): Density {
   const number = random.int(1, 10)
-  if (number >= 8) {
+  if (number >= 9) {
     return area <= 10 ? 'superhigh' : 'high'
   } else if (number <= 3) {
     return 'low'
@@ -36,8 +36,8 @@ function randomDensity(area: number): Density {
 }
 
 function randomBlockSize() {
-  const side1 = random.int(2, 5)
-  const side2 = side1 === 2 ? random.int(2, 3) : random.int(2, 5)
+  const side1 = random.int(2, 3)
+  const side2 = side1 === 2 ? random.int(2, 4) : random.int(2, 5)
   return random.int(0, 2) === 0
     ? { width: side1, height: side2 }
     : { height: side1, width: side2 }
