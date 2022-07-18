@@ -17,7 +17,7 @@ const cellSide = 0.5
 const gap = 0.4
 const citySide = sideCellCount * cellSide + (sideCellCount - 1) * gap
 const blockResolution = 20
-const cityResolution = 18 / sideCellCount
+const cityResolution = 23 / sideCellCount
 
 const city = document.getElementById('city')!
 let sheet: StyleSheet | null = null
@@ -57,7 +57,7 @@ function blockProperties(
     case 'high':
       return {
         buildingCount: random.int(2, 5),
-        depth: () => random.float(3, 8),
+        depth: () => random.float(5, 10),
         retreatFactor: () => random.float(0.1, 0.2),
       }
     case 'mid':
@@ -175,11 +175,11 @@ city.onclick = () => {
 
 let lastClampedScroll: number | null = null
 const maxNegativeScroll = 40
-const title = document.querySelector('h1')!
+const header = document.querySelector('header')! as HTMLElement
 
 function transformBasedOnScroll() {
   const pos = window.scrollY
-  const maxPositiveScroll = title.offsetTop
+  const maxPositiveScroll = header.offsetTop
   const clamped = Math.min(maxPositiveScroll, Math.max(-maxNegativeScroll, pos))
   if (clamped == lastClampedScroll) {
     return
@@ -187,9 +187,9 @@ function transformBasedOnScroll() {
     lastClampedScroll = clamped
   }
   if (clamped > 0) {
-    city.style.transform = `rotateX(${
-      (clamped / maxPositiveScroll) * 75
-    }deg) rotateZ(45deg)`
+    city.style.transform = `translateY(${
+      (clamped / maxPositiveScroll) * -30
+    }px) rotateX(${(clamped / maxPositiveScroll) * 75}deg) rotateZ(45deg)`
     lastClampedScroll = clamped
   } else {
     city.style.transform = `scale(${
