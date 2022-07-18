@@ -256,6 +256,3 @@ export class Block {
     return !this.takenPoints.has([x, y])
   }
 }
-
-const c = new Block(260, 400)
-const rects = c.makeBuildings(20)
