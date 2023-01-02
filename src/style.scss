@@ -59,7 +59,9 @@ body {
   }
 
   #city {
-    transform: rotateZ(45deg);
+    transform: translateY(calc(var(--rotate-factor) * -30px))
+      rotateX(calc(var(--rotate-factor) * 75deg))
+      scale(calc(1 + var(--scale-factor) * 0.15)) rotateZ(45deg);
     transform-style: preserve-3d;
 
     font-size: 3vw;

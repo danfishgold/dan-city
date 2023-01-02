@@ -10,15 +10,12 @@ export function transformBasedOnScroll(city: HTMLElement, header: HTMLElement) {
   } else {
     lastClampedScroll = clamped
   }
-  if (clamped > 0) {
-    city.style.transform = `translateY(${
-      (clamped / maxPositiveScroll) * -30
-    }px) rotateX(${(clamped / maxPositiveScroll) * 75}deg) rotateZ(45deg)`
-    lastClampedScroll = clamped
-  } else {
-    city.style.transform = `scale(${
-      1 + (clamped / maxNegativeScroll) * 0.15
-    }) rotateZ(45deg)`
-    lastClampedScroll = clamped
-  }
+  city.style.setProperty(
+    '--scale-factor',
+    clamped > 0 ? '0' : (clamped / maxNegativeScroll).toString(),
+  )
+  city.style.setProperty(
+    '--rotate-factor',
+    clamped < 0 ? '0' : (clamped / maxPositiveScroll).toString(),
+  )
 }
