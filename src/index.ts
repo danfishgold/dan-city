@@ -2,13 +2,14 @@ import { fillCity } from './css-city/city'
 import { transformBasedOnScroll } from './css-city/scroll'
 
 const city = document.getElementById('city')!
+const header = document.querySelector('header')! as HTMLElement
 
 fillCity(city)
 
 city.onclick = () => {
-  Array.from(city.children).forEach((c) => c.remove())
+  city.innerHTML = ''
   fillCity(city)
 }
 
-transformBasedOnScroll(city)
-window.addEventListener('scroll', () => transformBasedOnScroll(city))
+transformBasedOnScroll(city, header)
+window.addEventListener('scroll', () => transformBasedOnScroll(city, header))

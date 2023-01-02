@@ -1,8 +1,7 @@
 let lastClampedScroll: number | null = null
 const maxNegativeScroll = 40
-const header = document.querySelector('header')! as HTMLElement
 
-export function transformBasedOnScroll(city: HTMLElement) {
+export function transformBasedOnScroll(city: HTMLElement, header: HTMLElement) {
   const pos = window.scrollY
   const maxPositiveScroll = header.offsetTop
   const clamped = Math.min(maxPositiveScroll, Math.max(-maxNegativeScroll, pos))
