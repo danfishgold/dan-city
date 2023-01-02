@@ -1,5 +1,5 @@
+import { PointSet, range } from '../utils'
 import * as random from './random'
-import { PointSet, range } from './utils'
 
 const allDirections = ['top', 'bottom', 'left', 'right'] as const
 type Direction = typeof allDirections[number]

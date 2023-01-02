@@ -1,4 +1,4 @@
-import { range } from './utils'
+import { range } from '../utils'
 
 export function int(min: number, max: number) {
   return min + Math.floor((max + 1 - min) * Math.random())
