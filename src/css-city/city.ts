@@ -1,14 +1,6 @@
-import jss, { JssStyle, StyleSheet } from 'jss'
-import preset from 'jss-preset-default'
 import { Block } from './block'
 import LayoutEngine, { Rect } from './layout'
 import * as random from './random'
-import * as styles from './styles'
-
-jss.setup({
-  ...preset(),
-  createGenerateId: () => (rule) => rule.key,
-})
 
 const sideCellCount =
   parseInt(new URLSearchParams(location.search).get('a') ?? '') || 13
@@ -17,8 +9,6 @@ const gap = 0.4
 const citySide = sideCellCount * cellSide + (sideCellCount - 1) * gap
 const blockResolution = 20
 const cityResolution = 23 / sideCellCount
-
-let sheet: StyleSheet | null = null
 
 type Density = 'superhigh' | 'high' | 'mid' | 'low'
 
@@ -115,50 +105,25 @@ export function fillCity(city: HTMLElement) {
       }))
   })
 
-  let boxStyles: JssStyle = {}
-  let flatStyles: JssStyle = {}
-
-  buildings.forEach((building, idx) => {
-    if (building.isFlat) {
-      // @ts-ignore
-      flatStyles[`&:nth-child(${idx + 1})`] = styles.flat(
-        `${building.x}em`,
-        `${building.y}em`,
-        `${building.width}em`,
-        `${building.height}em`,
-      )
-    } else {
-      // @ts-ignore
-      boxStyles[`&:nth-child(${idx + 1})`] = styles.box(
-        `${building.x}em`,
-        `${building.y}em`,
-        `${building.width}em`,
-        `${building.height}em`,
-        `${building.depth}em`,
-      )
-    }
-  })
-
-  if (sheet) {
-    sheet.detach()
-  }
-  sheet = jss
-    .createStyleSheet({
-      box: boxStyles,
-      flat: flatStyles,
-    })
-    .attach()
-
   city.style.width = `${citySide}em`
   city.style.height = `${citySide}em`
-  buildings.forEach(({ isFlat }) => {
-    if (isFlat) {
+  buildings.forEach((building) => {
+    if (building.isFlat) {
       const flat = document.createElement('div')
       flat.classList.add('flat')
+      flat.style.setProperty('--flat-left', `${building.x}em`)
+      flat.style.setProperty('--flat-top', `${building.y}em`)
+      flat.style.setProperty('--flat-width', `${building.width}em`)
+      flat.style.setProperty('--flat-height', `${building.height}em`)
       city.appendChild(flat)
     } else {
       const box = document.createElement('div')
       box.classList.add('box')
+      box.style.setProperty('--box-left', `${building.x}em`)
+      box.style.setProperty('--box-top', `${building.y}em`)
+      box.style.setProperty('--box-width', `${building.width}em`)
+      box.style.setProperty('--box-height', `${building.height}em`)
+      box.style.setProperty('--box-depth', `${building.depth}em`)
       city.appendChild(box)
     }
   })

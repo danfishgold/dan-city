@@ -115,6 +115,10 @@ body {
     }
 
     .flat {
+      top: var(--flat-top);
+      left: var(--flat-left);
+      width: var(--flat-width);
+      height: var(--flat-height);
       position: absolute;
       background-color: paleturquoise;
     }
