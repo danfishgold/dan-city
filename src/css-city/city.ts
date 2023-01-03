@@ -105,8 +105,8 @@ export function fillCity(city: HTMLElement) {
       }))
   })
 
-  city.style.width = `${citySide}em`
-  city.style.height = `${citySide}em`
+  city.style.width = `${citySide * cityResolution}em`
+  city.style.height = `${citySide * cityResolution}em`
   buildings.forEach((building) => {
     if (building.isFlat) {
       const flat = document.createElement('div')
