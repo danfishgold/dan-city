@@ -14,6 +14,22 @@
   src: url('/TelAviv-BrutalistLight.ttf') format('truetype');
 }
 
+:root {
+  --building-right-color: black;
+  --building-top-color: white;
+  --flat-building-color: paleturquoise;
+  --building-left-color: pink;
+  --background-color: lightsalmon;
+  --title-color: crimson;
+
+  @supports (color: lch(0% 0 0)) {
+    --flat-building-color: lch(95% 25 190);
+    --building-left-color: lch(85% 30 20);
+    --background-color: lch(90% 46 45);
+    --title-color: lch(45% 95 30);
+  }
+}
+
 body,
 html {
   margin: 0;
@@ -23,8 +39,7 @@ html {
 body {
   font-family: 'Brutalist', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: lightsalmon;
-  min-height: calc(100vh + 7 * 1.5em - 20px);
+  background: var(--background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +61,7 @@ body {
     h1 {
       font-size: 5rem;
       font-weight: 900;
-      color: crimson;
+      color: var(--title-color);
       margin: 0;
       transform: translateZ(-1000rem);
     }
@@ -79,51 +94,51 @@ body {
     }
 
     .box {
+      background-color: var(--building-top-color);
       position: absolute;
-      transform-style: preserve-3d;
-      background-color: white;
       top: var(--box-top);
       left: var(--box-left);
       width: var(--box-width);
       height: var(--box-height);
       transform: translateZ(var(--box-depth));
+      transform-style: preserve-3d;
 
       &:before {
+        content: '';
+        background-color: var(--building-left-color);
+        position: absolute;
         top: 0;
         left: 0;
         width: var(--box-width);
         height: var(--box-depth);
         transform: translateZ(calc(-1 * var(--box-depth))) rotateX(-90deg)
           translateZ(calc(var(--box-height) - var(--box-depth)));
-        content: '';
-        position: absolute;
         transform-style: preserve-3d;
-        background-color: pink;
         transform-origin: bottom;
       }
 
       &:after {
+        content: '';
+        background-color: var(--building-right-color);
+        position: absolute;
         top: 0;
         left: 0;
         width: var(--box-depth);
         height: var(--box-height);
         transform: translateZ(calc(-1 * var(--box-depth))) rotateY(90deg)
           translateZ(calc(var(--box-width) - var(--box-depth)));
-        content: '';
-        position: absolute;
         transform-style: preserve-3d;
-        background-color: black;
         transform-origin: right;
       }
     }
 
     .flat {
+      background-color: var(--flat-building-color);
+      position: absolute;
       top: var(--flat-top);
       left: var(--flat-left);
       width: var(--flat-width);
       height: var(--flat-height);
-      position: absolute;
-      background-color: paleturquoise;
     }
   }
 }
@@ -146,7 +161,7 @@ footer {
 
     &:focus {
       color: midnightblue;
-      background: paleturquoise;
+      background: var(--flat-building-color);
       outline: 0;
     }
   }
