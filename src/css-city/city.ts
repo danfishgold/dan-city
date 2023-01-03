@@ -63,7 +63,7 @@ function blockProperties(
   }
 }
 
-export function fillCity(city: HTMLElement) {
+function generateBuildings() {
   const engine = new LayoutEngine(document.body, sideCellCount)
   let rects: Rect[] = []
   let nextRect = engine.addRect(randomBlockSize())
@@ -104,6 +104,19 @@ export function fillCity(city: HTMLElement) {
         isFlat: random.int(1, 10) <= 1,
       }))
   })
+
+  return buildings
+}
+
+export function fillCity(city: HTMLElement) {
+  let attempts = 0
+  let buildings = generateBuildings()
+  while (
+    attempts < 10 &&
+    Math.max(...buildings.map((b) => (b.isFlat ? 0 : b.depth))) < 7
+  ) {
+    buildings = generateBuildings()
+  }
 
   city.style.width = `${citySide * cityResolution}em`
   city.style.height = `${citySide * cityResolution}em`
