@@ -50,13 +50,16 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  width: 100%;
   flex-grow: 1;
   flex-shrink: 0;
 
   header {
-    padding-top: 6rem;
-    margin: 7rem 0 4rem;
+    padding-top: 9rem;
+    margin-top: 7rem;
     text-align: center;
+    position: relative;
+    width: 95%;
 
     h1 {
       font-size: 5rem;
@@ -67,31 +70,24 @@ body {
     }
 
     p {
+      position: absolute;
+      top: 100%;
+      width: 100%;
       font-size: 1.5rem;
       font-weight: 300;
       margin-top: 0;
+      text-align: center;
     }
   }
 
   #city {
-    transform: translateY(calc(var(--rotate-factor) * -30px))
+    transform: translateY(calc(var(--rotate-factor) * -2em))
       rotateX(calc(var(--rotate-factor) * 75deg))
       scale(calc(1 + var(--scale-factor) * 0.15)) rotateZ(45deg);
     transform-style: preserve-3d;
 
-    font-size: 3vw;
-
-    @media (min-width: 450px) {
-      font-size: 2vw;
-    }
-
-    @media (min-width: 800px) {
-      font-size: 1.5vw;
-    }
-
-    @media (min-width: 1200px) {
-      font-size: 1.25vw;
-    }
+    font-size: min(3vw, 20px);
+    margin-top: calc(0.5rem + 10em);
 
     .box {
       background-color: var(--building-top-color);
