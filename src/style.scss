@@ -39,8 +39,9 @@
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   @supports (color: lch(0% 0 0)) {
-    --flat-building-color: lch(95% 25 190);
-    --building-left-color: lch(85% 30 20);
+    --hue: 45;
+    --flat-building-color: lch(95% 25 180);
+    --building-left-color: lch(70% 70 45);
     --background-color: lch(90% 46 45);
     --title-color: lch(45% 95 30);
   }
@@ -66,6 +67,7 @@ body {
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  padding-bottom: 2rem;
   flex-grow: 1;
   flex-shrink: 0;
 
@@ -78,7 +80,7 @@ body {
     width: 95%;
 
     h1 {
-      font-size: 5rem;
+      font-size: min(7rem, 20vw);
       font-weight: 900;
       color: var(--title-color);
       margin: 0;
@@ -103,7 +105,7 @@ body {
     transform-style: preserve-3d;
 
     font-size: min(3vw, 20px);
-    margin-top: calc(0.5rem + 10em);
+    margin-top: calc(1rem + 9em);
 
     .box {
       background-color: var(--building-top-color);
@@ -155,12 +157,105 @@ body {
   }
 }
 
+main,
+footer {
+  max-width: 90%;
+  width: 700px;
+}
+
+h2 {
+  font-family: var(--title-font);
+  margin-bottom: 0;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+
+  .project {
+    --depth: 5px;
+    --scale: 1;
+    text-decoration: none;
+    color: black;
+    background: var(--building-top-color);
+    padding: 1rem;
+    transition: transform 0.25s;
+    position: relative;
+
+    @media (hover: hover) {
+      &:hover {
+        --scale: 2;
+        transform: translate(calc(-1 * var(--depth)), var(--depth));
+      }
+    }
+
+    &:focus {
+      outline: none;
+      --scale: 2;
+      transform: translate(calc(-1 * var(--depth)), var(--depth));
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: calc(-1 * var(--depth));
+      height: var(--depth);
+      left: 0;
+      width: 100%;
+      background: var(--title-color);
+      transform: skewX(-45deg) scaleY(var(--scale));
+      transform-origin: 0 100%;
+      transition: transform 0.25s;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: calc(-1 * var(--depth));
+      width: var(--depth);
+      top: 0;
+      height: 100%;
+      background: var(--building-right-color);
+      transform: skewY(-45deg) scaleX(var(--scale));
+      transform-origin: 0 0;
+      transition: transform 0.25s;
+    }
+
+    &[data-columns='1'] {
+      grid-column: span 1;
+    }
+
+    &[data-columns='2'] {
+      grid-column: span 2;
+    }
+
+    &[data-columns='3'] {
+      grid-column: span 3;
+    }
+
+    &[data-columns='4'] {
+      grid-column: span 4;
+    }
+
+    &[data-columns='5'] {
+      grid-column: span 5;
+    }
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+
+    .project[data-columns] {
+      grid-column: unset;
+    }
+  }
+}
+
 footer {
   color: black;
-  font-size: 1.2rem;
-  max-width: 90%;
-  width: 600px;
-  margin-bottom: calc(1em + env(safe-area-inset-bottom));
+  margin-top: 1rem;
+  margin-bottom: calc(1rem + env(safe-area-inset-bottom));
   text-align: left;
 
   a {
