@@ -11,5 +11,5 @@ city.onclick = () => {
   fillCity(city)
 }
 
-transformBasedOnScroll(city, header)
-window.addEventListener('scroll', () => transformBasedOnScroll(city, header))
+transformBasedOnScroll(header)
+window.addEventListener('scroll', () => transformBasedOnScroll(header))
