@@ -1,8 +1,8 @@
-import { PointSet, range } from '../utils'
+import { PointSet, range } from './utils'
 import * as random from './random'
 
 const allDirections = ['top', 'bottom', 'left', 'right'] as const
-type Direction = typeof allDirections[number]
+type Direction = (typeof allDirections)[number]
 
 class Building {
   left: number

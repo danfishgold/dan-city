@@ -1,0 +1,53 @@
+---
+import CssCityTitle from '@/components/CssCityTitle/index.astro'
+import Project from '@/components/Project.astro'
+import DefaultLayout from '@/layouts/Default.astro'
+---
+
+<DefaultLayout title='גושי דן'>
+  <CssCityTitle />
+  <main>
+    <Project url='https://bikemap.dan.city' columns={3}>
+      <h2>מפת שבילי אופניים</h2>
+      <p>
+        אתר לטלפון עם מידע עדכני על שבילי אופניים בגוש דן. כמו גוגל מפות אבל
+        יותר מהימן אבל גם פחות נוח
+      </p>
+    </Project>
+    <Project url='/shituf-bot/' columns={2}>
+      <h2>בוט שיתוף</h2>
+      <p>ערוץ טלגרם שמודיע על מפגשי ציבור של עיריית תל אביב</p>
+    </Project>
+    <Project url='/good-signs/' columns={2}>
+      <h2>שלטים טובים</h2>
+      <p>אוסף תמונות</p>
+    </Project>
+    <Project columns={2}>
+      <h2>בקרוב: צמתים חסרים</h2>
+      <p>סיווג של כל הצמתים בתל אביב מבחינת כמות מעברי החציה בהם</p>
+    </Project>
+  </main>
+  <footer>
+    <p>באהבה, דן</p>
+  </footer>
+</DefaultLayout>
+
+<style lang='scss'>
+  :root {
+    --building-right-color: black;
+    --building-top-color: white;
+    --flat-building-color: hsl(166, 100%, 86%);
+    --building-left-color: hsl(16, 100%, 66%);
+
+    @supports (color: lch(0% 0 0)) {
+      --flat-building-color: lch(95% 25 180);
+      --building-left-color: lch(70% 70 45);
+    }
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+</style>

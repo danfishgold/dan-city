@@ -1,0 +1,44 @@
+---
+import Post from '@/layouts/Post.astro'
+import clalit from './clalit.jpeg'
+import museum from './museum.jpeg'
+import shufersal from './shufersal.jpeg'
+import soltam from './soltam.jpeg'
+import truckYardFire from './truck-yard-fire.jpeg'
+import tuli from './tuli.jpeg'
+---
+
+<Post title='שלטים טובים'>
+  <figure>
+    <img src={museum} />
+    <figcaption>מוזיאון תל אביב, ינואר 2023</figcaption>
+  </figure>
+
+  <figure>
+    <img src={truckYardFire} />
+    <figcaption>רחבת כיבוי האש של מלון האופרה בתל אביב, נובמבר 2022</figcaption>
+  </figure>
+
+  <figure>
+    <img src={shufersal} />
+    <figcaption>שופרסל שלי ברחוב ויצמן בגבעתיים, אוקטובר 2022</figcaption>
+  </figure>
+
+  <figure>
+    <img src={clalit} />
+    <figcaption>קופת חולים כללית ברחוב בארי בתל אביב, יוני 2022</figcaption>
+  </figure>
+
+  <figure>
+    <img src={tuli} />
+    <figcaption>
+      התחנה המרכזית החדשה בתל אביב, נובמבר 2021. לפי גוגל טרנזלייט כתוב פה
+      במלאזית ״ברית מילה!!! בלי דם, בלי מחלה״.
+    </figcaption>
+  </figure>
+
+  <figure>
+    <img src={soltam} />
+    <figcaption>חנות סולתם ברחוב קינג ג׳ורג׳ בתל אביב, פברואר 2021</figcaption>
+  </figure>
+</Post>

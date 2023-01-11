@@ -1,4 +1,4 @@
-import { range } from '../utils'
+import { range } from './utils'
 
 export function int(min: number, max: number) {
   return min + Math.floor((max + 1 - min) * Math.random())
@@ -24,9 +24,9 @@ export function choice<T>(options: T[], weightFn: (item: T) => number): T {
   const randomNumber = Math.random() * total
   let cumsum = 0
   for (const index of range(0, options.length)) {
-    cumsum += weights[index]
+    cumsum += weights[index]!
     if (cumsum >= randomNumber) {
-      return options[index]
+      return options[index]!
     }
   }
   throw new Error(`Impossible state`)
@@ -44,5 +44,5 @@ export function sample<T>(options: T[], count: number): T[] {
 
   const factors = new Array(options.length).fill(0).map(() => Math.random())
   const threshold = Array.from(factors).sort()[count - 1]
-  return options.filter((_, index) => factors[index] <= threshold)
+  return options.filter((_, index) => factors[index]! <= threshold!)
 }

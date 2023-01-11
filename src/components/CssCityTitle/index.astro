@@ -1,0 +1,127 @@
+<div id='transformed'>
+  <header>
+    <h1>גושי דן</h1>
+    <p>אוסף פרוייקטים, בעיקר על עירוניות</p>
+  </header>
+  <div id='city'></div>
+</div>
+
+<script>
+  import { fillCity } from './city'
+  import { transformBasedOnScroll } from './scroll'
+
+  const city = document.getElementById('city')!
+  const header = document.querySelector('header')! as HTMLElement
+
+  fillCity(city)
+
+  city.onclick = () => {
+    city.innerHTML = ''
+    fillCity(city)
+  }
+
+  transformBasedOnScroll(header)
+  window.addEventListener('scroll', () => transformBasedOnScroll(header))
+</script>
+
+<style lang='scss'>
+  #transformed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    padding-bottom: 2rem;
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    header {
+      font-family: var(--title-font);
+      padding-top: 5rem;
+      margin-top: 8rem;
+      text-align: center;
+      position: relative;
+      width: 95%;
+
+      h1 {
+        font-size: min(7rem, 20vw);
+        font-weight: 900;
+        margin: 0;
+        transform: translateZ(-1000rem);
+      }
+
+      p {
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: 300;
+        margin-top: 0;
+        text-align: center;
+      }
+    }
+
+    #city {
+      @media (prefers-reduced-motion) {
+        --rotate-factor: 1;
+        --scale-factor: -1;
+      }
+
+      transform: translateY(calc(var(--rotate-factor) * -2em))
+        rotateX(calc(var(--rotate-factor) * 75deg))
+        scale(calc(1 + var(--scale-factor) * 0.15)) rotateZ(45deg);
+      transform-style: preserve-3d;
+
+      font-size: min(3vw, 20px);
+      margin-top: calc(1rem + 9em);
+
+      :global(.box) {
+        background-color: var(--building-top-color);
+        position: absolute;
+        top: var(--box-top);
+        left: var(--box-left);
+        width: var(--box-width);
+        height: var(--box-height);
+        transform: translateZ(var(--box-depth));
+        transform-style: preserve-3d;
+
+        &:before {
+          content: '';
+          background-color: var(--building-left-color);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: var(--box-width);
+          height: var(--box-depth);
+          transform: translateZ(calc(-1 * var(--box-depth))) rotateX(-90deg)
+            translateZ(calc(var(--box-height) - var(--box-depth)));
+          transform-style: preserve-3d;
+          transform-origin: bottom;
+        }
+
+        &:after {
+          content: '';
+          background-color: var(--building-right-color);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: var(--box-depth);
+          height: var(--box-height);
+          transform: translateZ(calc(-1 * var(--box-depth))) rotateY(90deg)
+            translateZ(calc(var(--box-width) - var(--box-depth)));
+          transform-style: preserve-3d;
+          transform-origin: right;
+        }
+      }
+
+      :global(.flat) {
+        background-color: var(--flat-building-color);
+        position: absolute;
+        top: var(--flat-top);
+        left: var(--flat-left);
+        width: var(--flat-width);
+        height: var(--flat-height);
+      }
+    }
+  }
+</style>

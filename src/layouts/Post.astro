@@ -1,0 +1,61 @@
+---
+import Default from './Default.astro'
+const { title, time } = Astro.props.frontmatter || Astro.props
+---
+
+<Default title={title}>
+  <header>
+    <h1>{title}</h1>
+    {time && <time>{time}</time>}
+  </header>
+  <main>
+    <slot />
+  </main>
+  <footer>
+    <p>
+      באהבה,
+      <a href='/'>דן</a>
+    </p>
+  </footer>
+</Default>
+
+<style lang='scss' is:global>
+  body {
+    line-height: 1.4;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 2rem;
+    justify-self: center;
+    max-width: 90%;
+    width: 700px;
+
+    h1 {
+      text-align: center;
+      font-size: min(4rem, 10vw);
+      margin: 0;
+      display: inline;
+    }
+
+    time {
+      align-self: end;
+    }
+  }
+
+  figure {
+    width: 100%;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+
+    img {
+      width: 100%;
+    }
+
+    figcaption {
+      font-size: 0.8rem;
+    }
+  }
+</style>
