@@ -1,23 +1,35 @@
 ---
 import './style.scss'
 import telegramLogo from './TelegramLogo.svg'
+import thumbnailImage from './thumbnail.jpg'
+
+const title = 'בוט שיתוף ציבור'
+const description = 'ערוץ טלגרם לשיתופי ציבור בתל אביב יפו'
+const imageUrl = new URL(thumbnailImage, Astro.site).toString()
 ---
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title>בוט שיתוף</title>
-    <meta
-      name='description'
-      content='ערוץ טלגרם לשיתופי ציבור של עיריית תל אביב יפו'
-    />
+    <title>{title}</title>
+    <meta name='description' content={description} />
+
     <meta charset='utf-8' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <meta property='og:image' content={imageUrl} />
+    <meta property='og:description' content={description} />
+    <meta property='og:title' content={title} />
+
+    <meta name='twitter:card' content='summary' />
+    <meta name='twitter:site' content='@danfishgold' />
+    <meta name='twitter:title' content={title} />
+    <meta name='twitter:description' content={description} />
+    <meta name='twitter:image' content={imageUrl} />
   </head>
   <body dir='rtl'>
     <header>
-      <h1>ערוץ טלגרם לשיתופי ציבור בתל אביב יפו</h1>
+      <h1>{description}</h1>
       <p class='subtitle'>לא רשמי ועל כן עלול להכיל בדיחות</p>
     </header>
     <div class='introduction'>
