@@ -14,6 +14,7 @@ body {
 
 header {
   text-align: center;
+  z-index: 1;
 }
 
 h1 {
@@ -27,6 +28,7 @@ h1 {
 
 .introduction {
   align-self: flex-start;
+  z-index: 1;
 }
 
 .cta {
@@ -86,7 +88,7 @@ h1 {
 .phone-wrapper {
   position: relative;
   background: #bccdaa;
-  z-index: -1;
+  z-index: 0;
   margin-top: calc(var(--desired-top-margin) - var(--phone-top));
   margin-bottom: -10vh;
 
