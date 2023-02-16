@@ -44,6 +44,10 @@ h1 {
   color: white;
   font-weight: 700;
 
+  &:visited {
+    color: white;
+  }
+
   img {
     width: 30px;
     height: 30px;
