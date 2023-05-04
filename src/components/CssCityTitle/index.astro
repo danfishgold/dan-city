@@ -21,7 +21,9 @@
   }
 
   transformBasedOnScroll(header)
-  window.addEventListener('scroll', () => transformBasedOnScroll(header))
+  window.addEventListener('scroll', () =>
+    requestAnimationFrame(() => transformBasedOnScroll(header)),
+  )
 </script>
 
 <style lang='scss'>
@@ -34,6 +36,7 @@
     padding-bottom: 2rem;
     flex-grow: 1;
     flex-shrink: 0;
+    contain: layout paint style;
 
     header {
       font-family: var(--title-font);
@@ -74,44 +77,37 @@
 
       font-size: min(3vw, 20px);
       margin-top: calc(1rem + 9em);
+      contain: size layout style;
 
-      :global(.box) {
-        background-color: var(--building-top-color);
+      :global(.box-part) {
         position: absolute;
         top: var(--box-top);
         left: var(--box-left);
+        contain: strict;
+      }
+
+      :global(.box-part--top) {
+        background-color: var(--building-top-color);
         width: var(--box-width);
         height: var(--box-height);
         transform: translateZ(var(--box-depth));
-        transform-style: preserve-3d;
+      }
+      :global(.box-part--left) {
+        background-color: var(--building-left-color);
+        width: var(--box-width);
+        height: var(--box-depth);
+        transform: rotateX(-90deg)
+          translateZ(calc(var(--box-height) - var(--box-depth)));
+        transform-origin: bottom;
+      }
 
-        &:before {
-          content: '';
-          background-color: var(--building-left-color);
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: var(--box-width);
-          height: var(--box-depth);
-          transform: translateZ(calc(-1 * var(--box-depth))) rotateX(-90deg)
-            translateZ(calc(var(--box-height) - var(--box-depth)));
-          transform-style: preserve-3d;
-          transform-origin: bottom;
-        }
-
-        &:after {
-          content: '';
-          background-color: var(--building-right-color);
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: var(--box-depth);
-          height: var(--box-height);
-          transform: translateZ(calc(-1 * var(--box-depth))) rotateY(90deg)
-            translateZ(calc(var(--box-width) - var(--box-depth)));
-          transform-style: preserve-3d;
-          transform-origin: right;
-        }
+      :global(.box-part--right) {
+        background-color: var(--building-right-color);
+        width: var(--box-depth);
+        height: var(--box-height);
+        transform: rotateY(90deg)
+          translateZ(calc(var(--box-width) - var(--box-depth)));
+        transform-origin: right;
       }
 
       :global(.flat) {

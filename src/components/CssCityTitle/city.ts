@@ -130,14 +130,20 @@ export function fillCity(city: HTMLElement) {
       flat.style.setProperty('--flat-height', `${building.height.toFixed(1)}em`)
       city.appendChild(flat)
     } else {
-      const box = document.createElement('div')
-      box.classList.add('box')
-      box.style.setProperty('--box-left', `${building.x.toFixed(1)}em`)
-      box.style.setProperty('--box-top', `${building.y.toFixed(1)}em`)
-      box.style.setProperty('--box-width', `${building.width.toFixed(1)}em`)
-      box.style.setProperty('--box-height', `${building.height.toFixed(1)}em`)
-      box.style.setProperty('--box-depth', `${building.depth.toFixed(1)}em`)
-      city.appendChild(box)
+      for (const boxPart of ['top', 'right', 'left']) {
+        const part = document.createElement('div')
+        part.classList.add(`box-part`)
+        part.classList.add(`box-part--${boxPart}`)
+        part.style.setProperty('--box-left', `${building.x.toFixed(1)}em`)
+        part.style.setProperty('--box-top', `${building.y.toFixed(1)}em`)
+        part.style.setProperty('--box-width', `${building.width.toFixed(1)}em`)
+        part.style.setProperty(
+          '--box-height',
+          `${building.height.toFixed(1)}em`,
+        )
+        part.style.setProperty('--box-depth', `${building.depth.toFixed(1)}em`)
+        city.appendChild(part)
+      }
     }
   })
 }
