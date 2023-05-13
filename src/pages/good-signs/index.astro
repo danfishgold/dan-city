@@ -1,5 +1,6 @@
 ---
 import Post from '@/layouts/Post.astro'
+import Figure from '../../components/Figure.astro'
 import clalit from './clalit.jpeg'
 import defekt from './defekt.jpeg'
 import museum from './museum.jpeg'
@@ -10,44 +11,27 @@ import tuli from './tuli.jpeg'
 ---
 
 <Post title='שלטים טובים'>
-  <figure>
-    <img src={defekt} />
-    <figcaption>
-      סניף של REWE בברלין, מרץ 2023. לפי גוגל טרנזלייט כתוב פה ״תקלה! בבקשה לא
-      להזיז את הדלת!״
-    </figcaption>
-  </figure>
+  <Figure src={defekt}>
+    סניף של REWE בברלין, מרץ 2023. לפי גוגל טרנזלייט כתוב פה ״תקלה! בבקשה לא
+    להזיז את הדלת!״
+  </Figure>
 
-  <figure>
-    <img src={museum} />
-    <figcaption>מוזיאון תל אביב, ינואר 2023</figcaption>
-  </figure>
+  <Figure src={museum}>מוזיאון תל אביב, ינואר 2023</Figure>
 
-  <figure>
-    <img src={truckYardFire} />
-    <figcaption>רחבת כיבוי האש של מלון האופרה בתל אביב, נובמבר 2022</figcaption>
-  </figure>
+  <Figure src={truckYardFire}>
+    רחבת כיבוי האש של מלון האופרה בתל אביב, נובמבר 2022
+  </Figure>
 
-  <figure>
-    <img src={shufersal} />
-    <figcaption>שופרסל שלי ברחוב ויצמן בגבעתיים, אוקטובר 2022</figcaption>
-  </figure>
+  <Figure src={shufersal}>שופרסל שלי ברחוב ויצמן בגבעתיים, אוקטובר 2022</Figure>
 
-  <figure>
-    <img src={clalit} />
-    <figcaption>קופת חולים כללית ברחוב בארי בתל אביב, יוני 2022</figcaption>
-  </figure>
+  <Figure src={clalit}>קופת חולים כללית ברחוב בארי בתל אביב, יוני 2022</Figure>
 
-  <figure>
-    <img src={tuli} />
-    <figcaption>
-      התחנה המרכזית החדשה בתל אביב, נובמבר 2021. לפי גוגל טרנזלייט כתוב פה
-      במלאזית ״ברית מילה!!! בלי דם, בלי מחלה״.
-    </figcaption>
-  </figure>
+  <Figure src={tuli}>
+    התחנה המרכזית החדשה בתל אביב, נובמבר 2021. לפי גוגל טרנזלייט כתוב פה במלאזית
+    ״ברית מילה!!! בלי דם, בלי מחלה״.
+  </Figure>
 
-  <figure>
-    <img src={soltam} />
-    <figcaption>חנות סולתם ברחוב קינג ג׳ורג׳ בתל אביב, פברואר 2021</figcaption>
-  </figure>
+  <Figure src={soltam}>
+    חנות סולתם ברחוב קינג ג׳ורג׳ בתל אביב, פברואר 2021
+  </Figure>
 </Post>

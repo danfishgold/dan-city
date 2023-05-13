@@ -5,7 +5,7 @@ import thumbnailImage from './thumbnail.jpg'
 
 const title = 'בוט שיתוף ציבור'
 const description = 'ערוץ טלגרם לשיתופי ציבור בתל אביב יפו'
-const imageUrl = new URL(thumbnailImage, Astro.site).toString()
+const imageUrl = new URL(thumbnailImage.src, Astro.site).toString()
 ---
 
 <!DOCTYPE html>
@@ -81,7 +81,7 @@ const imageUrl = new URL(thumbnailImage, Astro.site).toString()
         </div>
         <div class='top-cta-container'>
           <a class='cta top-cta' href='https://t.me/+oCV4nu8jRwM0MDM0'
-            >הצטרפו לערוץ<img src={telegramLogo} alt='' /></a
+            >הצטרפו לערוץ<img src={telegramLogo.src} alt='' /></a
           >
         </div>
       </div>
@@ -184,7 +184,7 @@ const imageUrl = new URL(thumbnailImage, Astro.site).toString()
       <p><a href='https://emoji-poetry.danfishgold.com'>כן</a>.</p>
       <h3>איך מצטרפים לערוץ?</h3>
       <a class='cta bottom-cta' href='https://t.me/+oCV4nu8jRwM0MDM0'
-        >הצטרפו לערוץ<img src={telegramLogo} alt='' /></a
+        >הצטרפו לערוץ<img src={telegramLogo.src} alt='' /></a
       >
     </div>
     <p class='signature'>באהבה, <a href='/'>דן</a></p>
