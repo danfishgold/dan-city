@@ -102,6 +102,7 @@ function generateBuildings() {
         height: (building.height / blockResolution) * cityResolution,
         depth: depth(),
         isFlat: random.int(1, 10) <= 1,
+        density,
       }))
   })
 
@@ -142,6 +143,7 @@ export function fillCity(city: HTMLElement) {
           `${building.height.toFixed(1)}em`,
         )
         part.style.setProperty('--box-depth', `${building.depth.toFixed(1)}em`)
+        part.dataset.density = building.density
         city.appendChild(part)
       }
     }
