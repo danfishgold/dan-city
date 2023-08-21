@@ -1,0 +1,37 @@
+---
+import Post from '@/layouts/Post.astro'
+import Figure from '../../components/Figure.astro'
+import clalit from './clalit.jpeg'
+import defekt from './defekt.jpeg'
+import museum from './museum.jpeg'
+import shufersal from './shufersal.jpeg'
+import soltam from './soltam.jpeg'
+import truckYardFire from './truck-yard-fire.jpeg'
+import tuli from './tuli.jpeg'
+---
+
+<Post title='שלטים טובים'>
+  <Figure src={defekt}>
+    סניף של REWE בברלין, מרץ 2023. לפי גוגל טרנזלייט כתוב פה ״תקלה! בבקשה לא
+    להזיז את הדלת!״
+  </Figure>
+
+  <Figure src={museum}>מוזיאון תל אביב, ינואר 2023</Figure>
+
+  <Figure src={truckYardFire}>
+    רחבת כיבוי האש של מלון האופרה בתל אביב, נובמבר 2022
+  </Figure>
+
+  <Figure src={shufersal}>שופרסל שלי ברחוב ויצמן בגבעתיים, אוקטובר 2022</Figure>
+
+  <Figure src={clalit}>קופת חולים כללית ברחוב בארי בתל אביב, יוני 2022</Figure>
+
+  <Figure src={tuli}>
+    התחנה המרכזית החדשה בתל אביב, נובמבר 2021. לפי גוגל טרנזלייט כתוב פה במלאזית
+    ״ברית מילה!!! בלי דם, בלי מחלה״.
+  </Figure>
+
+  <Figure src={soltam}>
+    חנות סולתם ברחוב קינג ג׳ורג׳ בתל אביב, פברואר 2021
+  </Figure>
+</Post>

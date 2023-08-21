@@ -1,0 +1,89 @@
+---
+const { url, columns } = Astro.props
+const Element = url ? 'a' : 'span'
+---
+
+<Element href={url} class='project' data-columns={columns} aria-disabled={!url}>
+  <slot />
+</Element>
+
+<style lang='scss'>
+  .project {
+    --depth: 5px;
+    --scale: 1;
+    text-decoration: none;
+    color: black;
+    background: var(--building-top-color);
+    padding: 1rem;
+    transition: transform 0.25s;
+    position: relative;
+
+    &[aria-disabled] {
+      opacity: 0.5;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        --scale: 2;
+        transform: translate(calc(-1 * var(--depth)), var(--depth));
+      }
+    }
+
+    &:focus {
+      outline: none;
+      --scale: 2;
+      transform: translate(calc(-1 * var(--depth)), var(--depth));
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: calc(-1 * var(--depth));
+      height: var(--depth);
+      left: 0;
+      width: 100%;
+      background: var(--title-color);
+      transform: skewX(-45deg) scaleY(var(--scale));
+      transform-origin: 0 100%;
+      transition: transform 0.25s;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: calc(-1 * var(--depth));
+      width: var(--depth);
+      top: 0;
+      height: 100%;
+      background: var(--building-right-color);
+      transform: skewY(-45deg) scaleX(var(--scale));
+      transform-origin: 0 0;
+      transition: transform 0.25s;
+    }
+
+    &[data-columns='1'] {
+      grid-column: span 1;
+    }
+
+    &[data-columns='2'] {
+      grid-column: span 2;
+    }
+
+    &[data-columns='3'] {
+      grid-column: span 3;
+    }
+
+    &[data-columns='4'] {
+      grid-column: span 4;
+    }
+
+    &[data-columns='5'] {
+      grid-column: span 5;
+    }
+
+    h2 {
+      font-family: var(--title-font);
+      margin-bottom: 0;
+    }
+  }
+</style>

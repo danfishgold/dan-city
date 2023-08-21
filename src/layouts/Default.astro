@@ -1,0 +1,120 @@
+---
+const { title, dir = 'rtl' } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang='he' dir={dir}>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style lang='scss' is:global>
+  @font-face {
+    font-family: 'Brutalist';
+    font-weight: noraml;
+    src: url('/TelAviv-BrutalistRegular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Brutalist';
+    font-weight: bold;
+    src: url('/TelAviv-BrutalistBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Brutalist';
+    font-weight: 300;
+    src: url('/TelAviv-BrutalistLight.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Modernist';
+    font-weight: noraml;
+    src: url('/TelAviv-ModernistRegular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'Modernist';
+    font-weight: bold;
+    src: url('/TelAviv-ModernistBold.ttf') format('truetype');
+  }
+
+  :root {
+    --title-font: Brutalist, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+      sans-serif;
+    --body-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    --background-color: hsl(19, 100%, 95%);
+    --title-color: hsl(350, 100%, 44%);
+
+    @supports (color: lch(0% 0 0)) {
+      --background-color: lch(95% 10 45);
+      --title-color: lch(45% 95 30);
+    }
+  }
+
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--body-font);
+    background: var(--background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  main,
+  footer {
+    max-width: 90%;
+    width: 700px;
+  }
+
+  main {
+    flex-grow: 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--title-font);
+  }
+
+  h1 {
+    color: var(--title-color);
+  }
+
+  footer {
+    color: black;
+    margin-top: 1rem;
+    margin-bottom: calc(1rem + env(safe-area-inset-bottom));
+    text-align: left;
+
+    a {
+      color: black;
+      transition: color 0.2s, background-color 0.2s;
+
+      &:hover {
+        color: midnightblue;
+      }
+
+      &:focus {
+        color: midnightblue;
+        background: pink;
+        outline: 0;
+      }
+    }
+  }
+</style>

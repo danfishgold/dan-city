@@ -1,0 +1,28 @@
+---
+import { Picture } from '@astrojs/image/components'
+const { src } = Astro.props
+---
+
+<figure>
+  <Picture src={src} alt='' formats={['jpeg']} widths={[400, 800, 1200]} />
+  <figcaption>
+    <slot />
+  </figcaption>
+</figure>
+
+<style lang='scss'>
+  figure {
+    width: 100%;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    figcaption {
+      font-size: 0.8rem;
+    }
+  }
+</style>
