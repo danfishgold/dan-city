@@ -2,30 +2,20 @@
 import CssCityTitle from '@/components/CssCityTitle/index.astro'
 import Project from '@/components/Project.astro'
 import DefaultLayout from '@/layouts/Default.astro'
+import { hebrewProjects } from './projects'
 ---
 
 <DefaultLayout title='גושי דן'>
   <CssCityTitle />
   <main>
-    <Project url='https://bikemap.dan.city' columns={3}>
-      <h2>מפת שבילי אופניים</h2>
-      <p>
-        אתר לטלפון עם מידע עדכני על שבילי אופניים בגוש דן. כמו גוגל מפות אבל
-        יותר מהימן אבל גם פחות נוח
-      </p>
-    </Project>
-    <Project url='/shituf-bot/' columns={2}>
-      <h2>בוט שיתוף</h2>
-      <p>ערוץ טלגרם שמודיע על מפגשי ציבור של עיריית תל אביב</p>
-    </Project>
-    <Project url='/good-signs/' columns={2}>
-      <h2>שלטים טובים</h2>
-      <p>אוסף תמונות</p>
-    </Project>
-    <Project columns={2}>
-      <h2>בקרוב: מצוקת חניה</h2>
-      <p>ניתוח זמינות החניה בחניוני הלילה של אחוזת החוף</p>
-    </Project>
+    {
+      hebrewProjects.map((project) => (
+        <Project columns={project.width} url={project.url ?? undefined}>
+          <h2>{project.title}</h2>
+          <p>{project.description}</p>
+        </Project>
+      ))
+    }
   </main>
   <footer>
     <p>באהבה, דן</p>
