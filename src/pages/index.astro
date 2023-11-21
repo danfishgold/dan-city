@@ -5,8 +5,8 @@ import DefaultLayout from '@/layouts/Default.astro'
 import { hebrewProjects } from './projects'
 ---
 
-<DefaultLayout title='גושי דן'>
-  <CssCityTitle />
+<DefaultLayout title='גושי דן' dir='rtl'>
+  <CssCityTitle title='גושי דן' subtitle='אוסף פרוייקטים, בעיקר על עירוניות' />
   <main>
     {
       hebrewProjects.map((project) => (

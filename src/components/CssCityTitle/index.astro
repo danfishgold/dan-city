@@ -1,7 +1,11 @@
+---
+const { title, subtitle } = Astro.props
+---
+
 <div id='transformed'>
   <header>
-    <h1>גושי דן</h1>
-    <p>אוסף פרוייקטים, בעיקר על עירוניות</p>
+    <h1>{title}</h1>
+    <p>{subtitle}</p>
   </header>
   <div id='city'></div>
 </div>
