@@ -7,8 +7,8 @@ body {
   align-items: center;
   --background-color: azure;
   background-color: var(--background-color);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   line-height: 1.5;
 }
 
@@ -52,7 +52,7 @@ h1 {
     color: white;
   }
 
-  img {
+  & img {
     width: 30px;
     height: 30px;
     border: 2px solid white;
@@ -134,7 +134,7 @@ h1 {
       transparent var(--phone-left)
     );
 
-  .phone-frame {
+  & .phone-frame {
     width: var(--phone-width);
     height: var(--phone-height);
     margin-top: var(--phone-top);
@@ -146,7 +146,7 @@ h1 {
     flex-direction: column;
   }
 
-  .top-phone-part {
+  & .top-phone-part {
     background-color: var(--phone-background-color);
     border-radius: 23px 23px 0 0;
 
@@ -154,7 +154,7 @@ h1 {
     backdrop-filter: var(--phone-background-filter);
   }
 
-  .notch-bar {
+  & .notch-bar {
     direction: ltr;
     display: flex;
     flex-direction: row;
@@ -164,49 +164,49 @@ h1 {
     font-weight: 500;
     padding: 0 12px;
 
-    > :nth-child(1),
-    > :nth-child(5) {
+    & > :nth-child(1),
+    & > :nth-child(5) {
       width: 47px;
       flex-grow: 0;
       flex-shrink: 0;
       text-align: center;
     }
 
-    > :nth-child(2) {
+    & > :nth-child(2) {
       height: 100%;
       background-color: black;
-      clip-path: path('M 0,0 q 5,0 5,5 l 0,5 q 0,10 10,10 l 0,-20 Z');
+      clip-path: path("M 0,0 q 5,0 5,5 l 0,5 q 0,10 10,10 l 0,-20 Z");
       flex: 0 0 15px;
     }
 
-    > :nth-child(3) {
+    & > :nth-child(3) {
       height: 100%;
       background-color: black;
       flex: 1 0 80px;
     }
 
-    > :nth-child(4) {
+    & > :nth-child(4) {
       height: 100%;
       background-color: black;
-      clip-path: path('M 0,0 l0,20 q 10,0 10,-10 l 0,-5 q 0,-5 5,-5 Z');
+      clip-path: path("M 0,0 l0,20 q 10,0 10,-10 l 0,-5 q 0,-5 5,-5 Z");
       flex: 0 0 15px;
     }
 
-    > :nth-child(5) {
+    & > :nth-child(5) {
       display: flex;
       align-items: end;
       justify-content: space-between;
     }
   }
 
-  .reception-icon {
+  & .reception-icon {
     width: 9px;
     display: flex;
     align-items: end;
     justify-content: space-between;
   }
 
-  .reception-icon-bar {
+  & .reception-icon-bar {
     width: 1.5px;
     background: black;
     border-radius: 0.5px;
@@ -225,7 +225,7 @@ h1 {
     }
   }
 
-  .wifi-icon {
+  & .wifi-icon {
     width: 12px;
     height: 12px;
     --b1: 18%;
@@ -245,7 +245,7 @@ h1 {
     clip-path: polygon(0% 0%, 0% 50%, 50% 100%, 100% 50%, 100% 0%, 0% 0%);
   }
 
-  .battery-icon {
+  & .battery-icon {
     width: 10px;
     height: 5px;
     background: black;
@@ -256,7 +256,7 @@ h1 {
     margin-right: 4px;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: calc(100% + 1px);
       top: calc(50% - 1px);
@@ -267,7 +267,7 @@ h1 {
     }
   }
 
-  .title-bar {
+  & .title-bar {
     height: 28px;
     padding-top: 6px;
     display: grid;
@@ -278,13 +278,13 @@ h1 {
     direction: ltr;
   }
 
-  .back-button {
+  & .back-button {
     position: relative;
     height: 13px;
     width: 13px;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       top: calc(50% - 0.75px);
       left: 0px;
@@ -297,7 +297,7 @@ h1 {
     }
 
     &::before {
-      content: '';
+      content: "";
       position: absolute;
       top: calc(50% - 0.75px);
       left: 0px;
@@ -310,7 +310,7 @@ h1 {
     }
   }
 
-  .channel-icon {
+  & .channel-icon {
     width: 22px;
     height: 22px;
     border-radius: 1000px;
@@ -318,7 +318,7 @@ h1 {
     display: grid;
     place-items: center;
 
-    > div {
+    & > div {
       width: 17px;
       height: 14.72px;
       margin-top: 3px;
@@ -333,11 +333,11 @@ h1 {
     }
   }
 
-  .spacer {
+  & .spacer {
     flex-grow: 1;
   }
 
-  .bottom-phone-part {
+  & .bottom-phone-part {
     background-color: var(--phone-background-color);
     border-radius: 0 0 23px 23px;
     display: flex;
@@ -346,13 +346,13 @@ h1 {
     -webkit-backdrop-filter: var(--phone-background-filter);
     backdrop-filter: var(--phone-background-filter);
 
-    .mute-thing {
+    & .mute-thing {
       margin: 7px 0 21px;
       color: #0072f6;
       font-size: 9px;
     }
 
-    .home-indicator {
+    & .home-indicator {
       width: 84px;
       height: 3px;
       border-radius: 1000px;
@@ -393,31 +393,31 @@ h1 {
   font-size: 10px;
   line-height: 1.5;
 
-  span {
+  & span {
     display: inline-block;
     padding: 5px;
   }
 
-  img {
+  & img {
     max-width: 100%;
     border-radius: 9px 9px 0 0;
   }
 
-  a,
-  a:visited {
+  & a,
+  & a:visited {
     text-decoration: none;
     color: #395dae;
   }
 
   &::after {
-    content: '';
+    content: "";
     background: white;
     width: 20px;
     height: 20px;
     position: absolute;
     bottom: 0;
     left: -10px;
-    clip-path: path('M 10,10 Q 10,18 4,20 Q 3,21 15,18 Z');
+    clip-path: path("M 10,10 Q 10,18 4,20 Q 3,21 15,18 Z");
   }
 }
 

@@ -1,5 +1,5 @@
 import { Block } from './block'
-import LayoutEngine, { Rect } from './layout'
+import LayoutEngine, { type Rect } from './layout'
 import * as random from './random'
 
 const sideCellCount =

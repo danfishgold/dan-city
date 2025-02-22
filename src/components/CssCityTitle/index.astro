@@ -30,7 +30,7 @@ const { title, subtitle } = Astro.props
   )
 </script>
 
-<style lang='scss'>
+<style>
   #transformed {
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@ const { title, subtitle } = Astro.props
     flex-shrink: 0;
     contain: layout paint style;
 
-    header {
+    & header {
       font-family: var(--title-font);
       padding-top: 5rem;
       margin-top: 8rem;
@@ -51,14 +51,14 @@ const { title, subtitle } = Astro.props
       position: relative;
       width: 95%;
 
-      h1 {
+      & h1 {
         font-size: min(7rem, 20vw);
         font-weight: 900;
         margin: 0;
         transform: translateZ(-1000rem);
       }
 
-      p {
+      & p {
         position: absolute;
         top: 100%;
         width: 100%;
@@ -69,7 +69,7 @@ const { title, subtitle } = Astro.props
       }
     }
 
-    #city {
+    & #city {
       @media (prefers-reduced-motion) {
         --rotate-factor: 1;
         --scale-factor: -1;
@@ -84,20 +84,20 @@ const { title, subtitle } = Astro.props
       margin-top: calc(1rem + 9em);
       contain: size layout style;
 
-      :global(.box-part) {
+      & :global(.box-part) {
         position: absolute;
         top: var(--box-top);
         left: var(--box-left);
         contain: strict;
       }
 
-      :global(.box-part--top) {
+      & :global(.box-part--top) {
         background-color: var(--building-top-color);
         width: var(--box-width);
         height: var(--box-height);
         transform: translateZ(var(--box-depth));
       }
-      :global(.box-part--left) {
+      & :global(.box-part--left) {
         background-color: var(--building-left-color);
         width: var(--box-width);
         height: var(--box-depth);
@@ -106,7 +106,7 @@ const { title, subtitle } = Astro.props
         transform-origin: bottom;
       }
 
-      :global(.box-part--right) {
+      & :global(.box-part--right) {
         background-color: var(--building-right-color);
         width: var(--box-depth);
         height: var(--box-height);
@@ -115,7 +115,7 @@ const { title, subtitle } = Astro.props
         transform-origin: right;
       }
 
-      :global(.flat) {
+      & :global(.flat) {
         background-color: var(--flat-building-color);
         position: absolute;
         top: var(--flat-top);

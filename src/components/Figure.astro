@@ -1,5 +1,5 @@
 ---
-import { Picture } from '@astrojs/image/components'
+import { Picture } from 'astro:assets'
 const { src } = Astro.props
 ---
 
@@ -10,18 +10,18 @@ const { src } = Astro.props
   </figcaption>
 </figure>
 
-<style lang='scss'>
+<style>
   figure {
     width: 100%;
     margin-inline-start: 0;
     margin-inline-end: 0;
 
-    img {
+    & img {
       width: 100%;
       height: auto;
     }
 
-    figcaption {
+    & figcaption {
       font-size: 0.8rem;
     }
   }
