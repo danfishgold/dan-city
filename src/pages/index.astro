@@ -1,12 +1,12 @@
 ---
-import CssCityTitle from '@/components/CssCityTitle/index.astro'
-import Project from '@/components/Project.astro'
-import DefaultLayout from '@/layouts/Default.astro'
-import { hebrewProjects } from './_projects'
+import CssCityTitle from "@/components/CssCityTitle/index.astro";
+import Project from "@/components/Project.astro";
+import DefaultLayout from "@/layouts/Default.astro";
+import { hebrewProjects } from "./_projects";
 ---
 
-<DefaultLayout title='גושי דן' dir='rtl'>
-  <CssCityTitle title='גושי דן' subtitle='אוסף פרוייקטים, בעיקר על עירוניות' />
+<DefaultLayout title="גושי דן" dir="rtl">
+  <CssCityTitle title="גושי דן" subtitle="אוסף פרוייקטים, בעיקר על עירוניות" />
   <main>
     {
       hebrewProjects.map((project) => (

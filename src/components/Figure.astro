@@ -1,10 +1,10 @@
 ---
-import { Picture } from 'astro:assets'
-const { src } = Astro.props
+import { Picture } from "astro:assets";
+const { src } = Astro.props;
 ---
 
 <figure>
-  <Picture src={src} alt='' formats={['jpeg']} widths={[400, 800, 1200]} />
+  <Picture src={src} alt="" formats={["jpeg"]} widths={[400, 800, 1200]} />
   <figcaption>
     <slot />
   </figcaption>

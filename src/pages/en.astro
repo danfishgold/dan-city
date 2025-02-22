@@ -1,12 +1,12 @@
 ---
-import CssCityTitle from '@/components/CssCityTitle/index.astro'
-import Project from '@/components/Project.astro'
-import DefaultLayout from '@/layouts/Default.astro'
-import { englishProjects } from './_projects'
+import CssCityTitle from "@/components/CssCityTitle/index.astro";
+import Project from "@/components/Project.astro";
+import DefaultLayout from "@/layouts/Default.astro";
+import { englishProjects } from "./_projects";
 ---
 
-<DefaultLayout title='Dan City' dir='ltr' titleFont='Modernist'>
-  <CssCityTitle title='Dan City' subtitle='A bunch of projects!' />
+<DefaultLayout title="Dan City" dir="ltr" titleFont="Modernist">
+  <CssCityTitle title="Dan City" subtitle="A bunch of projects!" />
   <main>
     {
       englishProjects.map((project) => (

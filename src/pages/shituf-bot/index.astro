@@ -1,94 +1,94 @@
 ---
-import './_style.css'
-import telegramLogo from './_TelegramLogo.svg'
-import thumbnailImage from './_thumbnail.jpg'
+import "./_style.css";
+import telegramLogo from "./_TelegramLogo.svg";
+import thumbnailImage from "./_thumbnail.jpg";
 
-const title = 'בוט שיתוף ציבור'
-const description = 'ערוץ טלגרם לשיתופי ציבור בתל אביב יפו'
-const imageUrl = new URL(thumbnailImage.src, Astro.site).toString()
+const title = "בוט שיתוף ציבור";
+const description = "ערוץ טלגרם לשיתופי ציבור בתל אביב יפו";
+const imageUrl = new URL(thumbnailImage.src, Astro.site).toString();
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>{title}</title>
-    <meta name='description' content={description} />
+    <meta name="description" content={description} />
 
-    <meta charset='utf-8' />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-    <meta name='viewport' content='width=device-width, initial-scale=1' />
-    <meta property='og:image' content={imageUrl} />
-    <meta property='og:description' content={description} />
-    <meta property='og:title' content={title} />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:description" content={description} />
+    <meta property="og:title" content={title} />
 
-    <meta name='twitter:card' content='summary' />
-    <meta name='twitter:site' content='@danfishgold' />
-    <meta name='twitter:title' content={title} />
-    <meta name='twitter:description' content={description} />
-    <meta name='twitter:image' content={imageUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@danfishgold" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
   </head>
-  <body dir='rtl'>
+  <body dir="rtl">
     <header>
       <h1>{description}</h1>
-      <p class='subtitle'>(לא רשמי)</p>
+      <p class="subtitle">(לא רשמי)</p>
     </header>
-    <div class='introduction'>
+    <div class="introduction">
       <p>
         אין לכם כוח להיכנס ל<a
-          href='https://www.tel-aviv.gov.il/Transparency/Pages/Share.aspx'
+          href="https://www.tel-aviv.gov.il/Transparency/Pages/Share.aspx"
           >אתר העיריה</a
         >
         כל פעם? מפחדים שתפספסו טוט של
-        <a href='https://tooot.im/@abaleh'>אבא׳לה</a>? רוצים לריב עם נימביסטים
+        <a href="https://tooot.im/@abaleh">אבא׳לה</a>? רוצים לריב עם נימביסטים
         בשעות הערב המוקדמות?
       </p>
       <p>הפתרון לחלק מהבעיות שלכם כבר כאן!</p>
     </div>
 
-    <div class='phone-wrapper' aria-label=''>
-      <div class='phone-overlay'>
-        <div class='phone-frame'>
-          <div class='top-phone-part'>
-            <div class='notch-bar'>
+    <div class="phone-wrapper" aria-label="">
+      <div class="phone-overlay">
+        <div class="phone-frame">
+          <div class="top-phone-part">
+            <div class="notch-bar">
               <div>9:41</div>
               <div></div>
               <div></div>
               <div></div>
               <div>
-                <div class='reception-icon'>
-                  <div class='reception-icon-bar'></div>
-                  <div class='reception-icon-bar'></div>
-                  <div class='reception-icon-bar'></div>
-                  <div class='reception-icon-bar'></div>
+                <div class="reception-icon">
+                  <div class="reception-icon-bar"></div>
+                  <div class="reception-icon-bar"></div>
+                  <div class="reception-icon-bar"></div>
+                  <div class="reception-icon-bar"></div>
                 </div>
-                <div class='wifi-icon'></div>
-                <div class='battery-icon'></div>
+                <div class="wifi-icon"></div>
+                <div class="battery-icon"></div>
               </div>
             </div>
-            <div class='title-bar'>
-              <div class='back-button'></div>
+            <div class="title-bar">
+              <div class="back-button"></div>
               <span>שיתופי ציבור בתל אביב יפו</span>
-              <div class='channel-icon'>
+              <div class="channel-icon">
                 <div><span>מכוניות</span></div>
               </div>
             </div>
           </div>
-          <div class='spacer'></div>
-          <div class='bottom-phone-part'>
-            <div class='mute-thing'>Mute</div>
-            <div class='home-indicator'></div>
+          <div class="spacer"></div>
+          <div class="bottom-phone-part">
+            <div class="mute-thing">Mute</div>
+            <div class="home-indicator"></div>
           </div>
         </div>
-        <div class='top-cta-container'>
-          <a class='cta top-cta' href='https://t.me/+oCV4nu8jRwM0MDM0'
-            >הצטרפו לערוץ<img src={telegramLogo.src} alt='' /></a
+        <div class="top-cta-container">
+          <a class="cta top-cta" href="https://t.me/+oCV4nu8jRwM0MDM0"
+            >הצטרפו לערוץ<img src={telegramLogo.src} alt="" /></a
           >
         </div>
       </div>
-      <div class='phone-content'>
-        <div class='message'>
+      <div class="phone-content">
+        <div class="message">
           <img
-            src='https://www.tel-aviv.gov.il/StockImages/תנועה%20וחנייה18.jpg'
+            src="https://www.tel-aviv.gov.il/StockImages/תנועה%20וחנייה18.jpg"
           />
           <span>
             <strong>מפגש מקוון: תחבורה ציבורית בצפון-מזרח</strong>
@@ -100,16 +100,16 @@ const imageUrl = new URL(thumbnailImage.src, Astro.site).toString()
             <br />
             •
             <a
-              href='https://www.tel-aviv.gov.il/Pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=33162'
+              href="https://www.tel-aviv.gov.il/Pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=33162"
               >פרטים נוספים באתר העיריה</a
             >
             <br />
-            • <a href='https://www.coing.co/u/75b9b76de9'>הרשמה למפגש</a></span
+            • <a href="https://www.coing.co/u/75b9b76de9">הרשמה למפגש</a></span
           >
         </div>
-        <div class='message'>
+        <div class="message">
           <img
-            src='https://tel-aviv.gov.il/digitelimages2020/eb3870b1907e45a584125d9bbb97ee43.jpg'
+            src="https://tel-aviv.gov.il/digitelimages2020/eb3870b1907e45a584125d9bbb97ee43.jpg"
           />
           <span>
             <strong>מפגש ציבור - הקמת גשר אינשטיין</strong>
@@ -121,14 +121,14 @@ const imageUrl = new URL(thumbnailImage.src, Astro.site).toString()
             <br />
             •
             <a
-              href='https://www.tel-aviv.gov.il/Pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=33300'
+              href="https://www.tel-aviv.gov.il/Pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=33300"
               >פרטים נוספים באתר העיריה</a
             ></span
           >
         </div>
-        <div class='message'>
+        <div class="message">
           <img
-            src='https://tel-aviv.gov.il/StockImages/עבודות%20תחבורה17.jpg'
+            src="https://tel-aviv.gov.il/StockImages/עבודות%20תחבורה17.jpg"
           />
           <span>
             <strong>שיתוף ציבור - שביל אופניים ברחוב יפת</strong>
@@ -141,7 +141,7 @@ const imageUrl = new URL(thumbnailImage.src, Astro.site).toString()
             <br />
             •
             <a
-              href='https://www.tel-aviv.gov.il/Pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=33422'
+              href="https://www.tel-aviv.gov.il/Pages/MainItemPage.aspx?WebID=3af57d92-807c-43c5-8d5f-6fd455eb2776&ListID=969f7de3-0ac9-4a30-88f0-2e1a7281f3d0&ItemID=33422"
               >פרטים נוספים באתר העיריה</a
             ></span
           >
@@ -149,12 +149,12 @@ const imageUrl = new URL(thumbnailImage.src, Astro.site).toString()
       </div>
     </div>
 
-    <div class='q-and-a'>
+    <div class="q-and-a">
       <h2>שאלות ותשובות</h2>
       <h3>מאיפה המידע?</h3>
       <p>
         הישר מ<a
-          href='https://www.tel-aviv.gov.il/Transparency/Pages/Share.aspx'
+          href="https://www.tel-aviv.gov.il/Transparency/Pages/Share.aspx"
           >אתר העיריה</a
         >! הבוט דוגם את האתר כל שעה וברגע שיש אירוע חדש הוא מדווח בערוץ.
       </p>
@@ -178,15 +178,15 @@ const imageUrl = new URL(thumbnailImage.src, Astro.site).toString()
       <h3>יש את זה גם ב RSS?</h3>
       <p>
         אם שלושה אנשים שהם לא עדו קליין יבקשו ממני לעשות לזה פיד RSS אני אעשה את
-        זה (או כנראה <a href='https://www.jsonfeed.org'>JSON Feed</a>).
+        זה (או כנראה <a href="https://www.jsonfeed.org">JSON Feed</a>).
       </p>
       <h3>יש לך את זה ביותר נישתי?</h3>
-      <p><a href='https://emoji-poetry.danfishgold.com'>כן</a>.</p>
+      <p><a href="https://emoji-poetry.danfishgold.com">כן</a>.</p>
       <h3>איך מצטרפים לערוץ?</h3>
-      <a class='cta bottom-cta' href='https://t.me/+oCV4nu8jRwM0MDM0'
-        >הצטרפו לערוץ<img src={telegramLogo.src} alt='' /></a
+      <a class="cta bottom-cta" href="https://t.me/+oCV4nu8jRwM0MDM0"
+        >הצטרפו לערוץ<img src={telegramLogo.src} alt="" /></a
       >
     </div>
-    <p class='signature'>באהבה, <a href='/'>דן</a></p>
+    <p class="signature">באהבה, <a href="/">דן</a></p>
   </body>
 </html>

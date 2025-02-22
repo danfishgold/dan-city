@@ -1,10 +1,10 @@
 ---
-const { summary } = Astro.props
+const { summary } = Astro.props;
 ---
 
 <details>
   <summary>{summary}</summary>
-  <div class='details-details'><slot /></div>
+  <div class="details-details"><slot /></div>
 </details>
 
 <style>
@@ -25,7 +25,7 @@ const { summary } = Astro.props
       }
 
       &::before {
-        content: '◀︎';
+        content: "◀︎";
         margin-inline-end: 0.5rem;
         transform: rotate(0);
         transition: transform 0.25s;

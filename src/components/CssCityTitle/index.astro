@@ -1,33 +1,33 @@
 ---
-const { title, subtitle } = Astro.props
+const { title, subtitle } = Astro.props;
 ---
 
-<div id='transformed'>
+<div id="transformed">
   <header>
     <h1>{title}</h1>
     <p>{subtitle}</p>
   </header>
-  <div id='city'></div>
+  <div id="city"></div>
 </div>
 
 <script>
-  import { fillCity } from './city'
-  import { transformBasedOnScroll } from './scroll'
+  import { fillCity } from "./city";
+  import { transformBasedOnScroll } from "./scroll";
 
-  const city = document.getElementById('city')!
-  const header = document.querySelector('header')! as HTMLElement
+  const city = document.getElementById("city")!;
+  const header = document.querySelector("header")! as HTMLElement;
 
-  fillCity(city)
+  fillCity(city);
 
   city.onclick = () => {
-    city.innerHTML = ''
-    fillCity(city)
-  }
+    city.innerHTML = "";
+    fillCity(city);
+  };
 
-  transformBasedOnScroll(header)
-  window.addEventListener('scroll', () =>
-    requestAnimationFrame(() => transformBasedOnScroll(header)),
-  )
+  transformBasedOnScroll(header);
+  window.addEventListener("scroll", () =>
+    requestAnimationFrame(() => transformBasedOnScroll(header))
+  );
 </script>
 
 <style>
