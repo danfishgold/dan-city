@@ -20,7 +20,7 @@ const introMarkdown = `
 
 ${description}
 
-## רגע רגע רגע מה קורה פה
+## רגע רגע רגע מה זה הדבר הזה
 
 זה סטורי, כמו באינסטגרם, אבל לא. תעדכנו אם אתם מוצאים באגים
 `;
@@ -201,6 +201,7 @@ const introAndItems: Props["items"] = [
               );
 
             .markdown {
+              line-height: 1.5;
               place-self: center;
             }
           }
@@ -217,15 +218,6 @@ const introAndItems: Props["items"] = [
           font-size: 2.5rem;
           border-radius: 1000px;
         }
-      }
-    }
-
-    @support not (margin-trim: block) {
-      .markdown > :first-child {
-        margin-block-start: 0;
-      }
-      .markdown > :last-child {
-        margin-block-end: 0;
       }
     }
   </style>

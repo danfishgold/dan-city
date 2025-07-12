@@ -32,14 +32,16 @@ const {
     {
       stories.length > 0 && (
         <div class="stories">
-          {stories.map((story) => (
-            <a class="story" href={`/stories/${story.id}`}>
-              <div class="thumbnail">
-                <Image src={story.data.thumbnail} alt="" loading="lazy" />
-              </div>
-              {story.data.title}
-            </a>
-          ))}
+          {stories
+            .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+            .map((story) => (
+              <a class="story" href={`/stories/${story.id}`}>
+                <div class="thumbnail">
+                  <Image src={story.data.thumbnail} alt="" loading="lazy" />
+                </div>
+                {story.data.title}
+              </a>
+            ))}
         </div>
       )
     }
@@ -75,12 +77,13 @@ const {
   .stories {
     display: flex;
     flex-direction: row;
-    gap: 16px;
     overflow-x: auto;
     padding-bottom: 12px;
     margin-bottom: 32px;
 
     .story {
+      width: 96px;
+      text-align: center;
       display: flex;
       flex-direction: column;
       gap: 4px;
