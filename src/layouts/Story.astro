@@ -54,6 +54,10 @@ const introAndItems: Props["items"] = [
                   <div class="translation">{story.translation}</div>
                 )}
               </>
+            ) : story.type === "video" ? (
+              <>
+                <video src={story.src} controls />
+              </>
             ) : (
               <div class="markdown-container">
                 <div class="markdown" set:html={marked.parse(story.text)} />
@@ -156,6 +160,14 @@ const introAndItems: Props["items"] = [
           border-radius: 12px; /* for text */
 
           img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            border-radius: 12px;
+          }
+
+          video {
             width: 100%;
             height: 100%;
             object-fit: contain;
