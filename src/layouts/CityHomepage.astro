@@ -3,8 +3,8 @@ import Default from "./Default.astro";
 import CssCityTitle from "@/components/CssCityTitle/index.astro";
 import Project from "@/components/Project.astro";
 import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
 import type { Project as ProjectType } from "@/pages/_projects";
+import type { Story } from "@/stories";
 
 type Props = {
   title: string;
@@ -13,7 +13,7 @@ type Props = {
   dir?: "rtl" | "ltr";
   titleFont?: string;
   projects: ProjectType[];
-  stories: CollectionEntry<"stories">[];
+  stories: Story[];
 };
 const {
   title,
@@ -33,13 +33,18 @@ const {
       stories.length > 0 && (
         <div class="stories">
           {stories
-            .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+            .sort((a, b) => b.date.getTime() - a.date.getTime())
             .map((story) => (
               <a class="story" href={`/stories/${story.id}`}>
                 <div class="thumbnail">
-                  <Image src={story.data.thumbnail} alt="" loading="lazy" />
+                  <Image
+                    src={story.thumbnail}
+                    alt=""
+                    widths={[50]}
+                    loading="lazy"
+                  />
                 </div>
-                {story.data.title}
+                {story.title}
               </a>
             ))}
         </div>

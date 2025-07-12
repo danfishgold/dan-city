@@ -18,3 +18,13 @@ export type Story = {
   aspectRatio?: number;
   thumbnail: ImageMetadata;
 };
+
+const allStoryPromises = await Promise.all(
+  Object.values(import.meta.glob("./*/index.ts")).map((importPromise) =>
+    importPromise()
+  )
+);
+
+export const stories = allStoryPromises.map(
+  (exports) => (exports as { story: Story }).story
+);

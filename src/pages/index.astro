@@ -1,9 +1,7 @@
 ---
-import { getCollection } from "astro:content";
 import CityHomepage from "@/layouts/CityHomepage.astro";
 import { hebrewProjects } from "./_projects";
-
-const stories = await getCollection("stories");
+import { stories } from "@/stories";
 ---
 
 <CityHomepage
