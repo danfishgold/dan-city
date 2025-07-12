@@ -6,8 +6,16 @@ export type StoryItem =
       alt?: string;
       translation?: string;
     }
-  | { type: "video"; src: string }
-  | { type: "markdown"; text: string };
+  | {
+      type: "video";
+      src: string;
+      translation?: string;
+    }
+  | {
+      type: "markdown";
+      text: string;
+      translation?: string;
+    };
 
 export type Story = {
   id: string;

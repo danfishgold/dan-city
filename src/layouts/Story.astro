@@ -20,6 +20,10 @@ const introMarkdown = `
 
 ${description}
 
+<br/>
+<br/>
+<br/>
+
 ## רגע רגע רגע מה זה הדבר הזה
 
 זה סטורי, כמו באינסטגרם, אבל לא. תעדכנו אם אתם מוצאים באגים
@@ -36,6 +40,11 @@ const introAndItems: Props["items"] = [
     <title>{title}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="module">
+      if (!("anchorName" in document.documentElement.style)) {
+        import("https://unpkg.com/@oddbird/css-anchor-positioning");
+      }
+    </script>
   </head>
   <div class="story-wrapper">
     <div class="story-scroller" tabindex="0">
@@ -50,18 +59,33 @@ const introAndItems: Props["items"] = [
                   widths={[400, 800, 1200]}
                   loading="lazy"
                 />
-                {story.translation && (
-                  <div class="translation">{story.translation}</div>
-                )}
               </>
             ) : story.type === "video" ? (
               <>
-                <video src={story.src} controls />
+                <video src={story.src} controls playsinline />
               </>
             ) : (
               <div class="markdown-container">
                 <div class="markdown" set:html={marked.parse(story.text)} />
               </div>
+            )}
+            {story.translation && (
+              <>
+                <button
+                  class="translation-button"
+                  popovertarget={`story-${index}-translation`}
+                  style={`anchor-name: --story-${index}-translation`}
+                >
+                  🌐
+                </button>
+                <div
+                  class="translation"
+                  id={`story-${index}-translation`}
+                  style={`position-anchor: --story-${index}-translation`}
+                  popover
+                  set:html={marked.parse(story.translation)}
+                />
+              </>
             )}
           </div>
         ))
@@ -151,13 +175,39 @@ const introAndItems: Props["items"] = [
         }
 
         .story {
+          container-type: inline-size;
           scroll-snap-align: center;
           flex-grow: 0;
           flex-shrink: 0;
           height: 100%;
           aspect-ratio: var(--aspectRatio);
+          position: relative;
           overflow-y: scroll; /* for text */
           border-radius: 12px; /* for text */
+
+          .translation-button {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            appearance: none;
+            border: none;
+            background: none;
+            width: 44px;
+            height: 44px;
+            font-size: 30px;
+            line-height: 0;
+          }
+
+          .translation {
+            position: absolute;
+            inset: auto;
+            bottom: calc(anchor(top) + 6px);
+            left: calc(anchor(left) + 10px);
+            max-width: calc(100cqw - 2 * 10px - 2 * 16px);
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+          }
 
           img {
             width: 100%;
