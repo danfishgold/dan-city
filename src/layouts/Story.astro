@@ -35,7 +35,7 @@ const introAndItems: Props["items"] = [
 ];
 ---
 
-<html>
+<html lang="he">
   <head>
     <title>{title}</title>
     <meta charset="utf-8" />
@@ -57,15 +57,15 @@ const introAndItems: Props["items"] = [
                   src={story.src}
                   alt={story.alt ?? ""}
                   widths={[400, 800, 1200]}
-                  loading="lazy"
+                  loading={index <= 5 ? "eager" : "lazy"}
                 />
               </>
             ) : story.type === "video" ? (
               <>
-                <video src={story.src} controls playsinline />
+                <video src={story.src} controls playsinline preload="auto" />
               </>
             ) : (
-              <div class="markdown-container">
+              <div class="markdown-container" dir="rtl">
                 <div class="markdown" set:html={marked.parse(story.text)} />
               </div>
             )}
@@ -91,47 +91,8 @@ const introAndItems: Props["items"] = [
         ))
       }
     </div>
-    <!-- <div class="comments-etc">
-      <button class="emoji-reaction-button">☺︎</button>
-      <button class="comment-button">✍︎</button>
-    </div> -->
   </div>
-
-  <script>
-    const container = document.querySelector(".story-scroller")! as HTMLElement;
-    const storyElements = document.querySelectorAll(
-      ".story"
-    ) as NodeListOf<HTMLElement>;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const intersectingStories = entries
-          .filter((entry) => entry.isIntersecting)
-          .map((entry) => (entry.target as HTMLElement).dataset);
-        if (intersectingStories.length === 0) {
-          return;
-        } else if (intersectingStories.length > 1) {
-          throw new Error(
-            `Multiple stories found in intersection: ${intersectingStories.join(", ")}`
-          );
-        }
-        // const activeStory = intersectingStories[0]!;
-        // const activeStoryIndex = +activeStory.storyIndex!;
-        // window.history.replaceState(
-        //   undefined,
-        //   "",
-        //   `#story-${activeStoryIndex + 1}`
-        // );
-      },
-      {
-        root: container,
-        rootMargin: "0px",
-        threshold: 0.5,
-      }
-    );
-    storyElements.forEach((story) => observer.observe(story));
-  </script>
-  <style define:vars={{ aspectRatio }}>
+  <style define:vars={{ "aspect-ratio": aspectRatio }}>
     html,
     body {
       margin: 0;
@@ -152,7 +113,7 @@ const introAndItems: Props["items"] = [
       align-items: center;
 
       .story-scroller {
-        aspect-ratio: var(--aspectRatio);
+        aspect-ratio: var(--aspect-ratio);
         border-radius: 12px;
         flex-grow: 1;
         display: flex;
@@ -163,15 +124,21 @@ const introAndItems: Props["items"] = [
         scroll-snap-type: x mandatory;
         outline: none;
 
-        &::-webkit-scrollbar {
-          width: 5px;
-          height: 8px;
-          background-color: transparent;
+        @supports (scrollbar-color: auto) {
+          & {
+            scrollbar-color: white transparent;
+          }
         }
+        @supports selector(::-webkit-scrollbar) {
+          &::-webkit-scrollbar {
+            height: 8px;
+            background-color: transparent;
+          }
 
-        &::-webkit-scrollbar-thumb {
-          background: white;
-          border-radius: 1000px;
+          &::-webkit-scrollbar-thumb {
+            background: white;
+            border-radius: 1000px;
+          }
         }
 
         .story {
@@ -180,7 +147,7 @@ const introAndItems: Props["items"] = [
           flex-grow: 0;
           flex-shrink: 0;
           height: 100%;
-          aspect-ratio: var(--aspectRatio);
+          aspect-ratio: var(--aspect-ratio);
           position: relative;
           overflow-y: scroll; /* for text */
           border-radius: 12px; /* for text */
@@ -203,7 +170,7 @@ const introAndItems: Props["items"] = [
             inset: auto;
             bottom: calc(anchor(top) + 6px);
             left: calc(anchor(left) + 10px);
-            max-width: calc(100cqw - 2 * 10px - 2 * 16px);
+            width: calc(100cqw - 2 * 10px - 2 * 16px);
             border: none;
             border-radius: 4px;
             padding: 8px 16px;
@@ -229,7 +196,6 @@ const introAndItems: Props["items"] = [
             --vertical-padding: 36px;
             padding: var(--vertical-padding) 24px;
             min-height: calc(100% - 2 * var(--vertical-padding));
-            direction: rtl;
             display: grid;
             background-image: radial-gradient(
                 circle at 94% 95%,
@@ -267,18 +233,6 @@ const introAndItems: Props["items"] = [
               place-self: center;
             }
           }
-        }
-      }
-
-      .comments-etc {
-        button {
-          background: none;
-          margin: 0;
-          padding: 0;
-          border: none;
-          color: white;
-          font-size: 2.5rem;
-          border-radius: 1000px;
         }
       }
     }
