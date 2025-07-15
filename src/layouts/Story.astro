@@ -1,0 +1,245 @@
+---
+import { Picture } from "astro:assets";
+import { marked } from "marked";
+import { type Story as Props } from "../stories";
+
+const {
+  title,
+  description,
+  items,
+  aspectRatio: passedAspectRatio,
+} = Astro.props;
+const firstImage = items.find((story) => story.type === "image");
+const fallbackAspectRatio = firstImage
+  ? firstImage.src.width / firstImage.src.height
+  : 1;
+const aspectRatio = passedAspectRatio ?? fallbackAspectRatio;
+
+const introMarkdown = `
+# ${title}
+
+${description}
+
+<br/>
+<br/>
+<br/>
+
+## רגע רגע רגע מה זה הדבר הזה
+
+זה סטורי, כמו באינסטגרם, אבל לא. תעדכנו אם אתם מוצאים באגים
+`;
+
+const introAndItems: Props["items"] = [
+  { type: "markdown", text: introMarkdown },
+  ...items,
+];
+---
+
+<html lang="he">
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="module">
+      if (!("anchorName" in document.documentElement.style)) {
+        import("https://unpkg.com/@oddbird/css-anchor-positioning");
+      }
+    </script>
+  </head>
+  <div class="story-wrapper">
+    <div class="story-scroller" tabindex="0">
+      {
+        introAndItems.map((story, index) => (
+          <div id={`story-${index + 1}`} class="story">
+            {story.type === "image" ? (
+              <>
+                <Picture
+                  src={story.src}
+                  alt={story.alt ?? ""}
+                  widths={[400, 800, 1200]}
+                  loading={index <= 5 ? "eager" : "lazy"}
+                />
+              </>
+            ) : story.type === "video" ? (
+              <>
+                <video src={story.src} controls playsinline preload="auto" />
+              </>
+            ) : (
+              <div class="markdown-container" dir="rtl">
+                <div class="markdown" set:html={marked.parse(story.text)} />
+              </div>
+            )}
+            {story.translation && (
+              <>
+                <button
+                  class="translation-button"
+                  popovertarget={`story-${index}-translation`}
+                  style={`anchor-name: --story-${index}-translation`}
+                >
+                  🌐
+                </button>
+                <div
+                  class="translation"
+                  id={`story-${index}-translation`}
+                  style={`position-anchor: --story-${index}-translation`}
+                  popover
+                  set:html={marked.parse(story.translation)}
+                />
+              </>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <style define:vars={{ "aspect-ratio": aspectRatio }}>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    }
+    body {
+      background-color: black;
+      color: white;
+      color-scheme: dark;
+    }
+    .story-wrapper {
+      --vertical-padding: 16px;
+      display: flex;
+      flex-direction: column;
+      padding: var(--vertical-padding) 0;
+      height: calc(100svh - 2 * var(--vertical-padding));
+      align-items: center;
+
+      .story-scroller {
+        aspect-ratio: var(--aspect-ratio);
+        border-radius: 12px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        overflow-x: scroll;
+        scrollbar-color: white black;
+        scroll-snap-type: x mandatory;
+        outline: none;
+
+        @supports (scrollbar-color: auto) {
+          & {
+            scrollbar-color: white transparent;
+          }
+        }
+        @supports selector(::-webkit-scrollbar) {
+          &::-webkit-scrollbar {
+            height: 8px;
+            background-color: transparent;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: white;
+            border-radius: 1000px;
+          }
+        }
+
+        .story {
+          container-type: inline-size;
+          scroll-snap-align: center;
+          flex-grow: 0;
+          flex-shrink: 0;
+          height: 100%;
+          aspect-ratio: var(--aspect-ratio);
+          position: relative;
+          overflow-y: scroll; /* for text */
+          border-radius: 12px; /* for text */
+
+          .translation-button {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            appearance: none;
+            border: none;
+            background: none;
+            width: 44px;
+            height: 44px;
+            font-size: 30px;
+            line-height: 0;
+          }
+
+          .translation {
+            position: absolute;
+            inset: auto;
+            bottom: calc(anchor(top) + 6px);
+            left: calc(anchor(left) + 10px);
+            /* width: calc(100cqw - 2 * 10px - 2 * 16px); this probably causes an issue in Safari 26 */
+            width: 300px;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            border-radius: 12px;
+          }
+
+          video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            border-radius: 12px;
+          }
+
+          .markdown-container {
+            --vertical-padding: 36px;
+            padding: var(--vertical-padding) 24px;
+            min-height: calc(100% - 2 * var(--vertical-padding));
+            display: grid;
+            background-color: hsla(337, 84%, 48%, 1);
+            background-image: radial-gradient(
+                circle at 97% 33%,
+                hsla(326, 96%, 44%, 1) 2%,
+                transparent 85%
+              ),
+              radial-gradient(
+                circle at 67% 18%,
+                hsla(234, 85%, 51%, 1) 2%,
+                transparent 85%
+              ),
+              radial-gradient(
+                circle at 37% 40%,
+                hsla(296, 89%, 59%, 1) 2%,
+                transparent 85%
+              ),
+              radial-gradient(
+                circle at 9% 23%,
+                hsla(279, 99%, 59%, 1) 2%,
+                transparent 85%
+              ),
+              radial-gradient(
+                circle at 6% 82%,
+                hsla(310, 87%, 46%, 1) 2%,
+                transparent 85%
+              ),
+              radial-gradient(
+                circle at 35% 78%,
+                hsla(233, 100%, 47%, 1) 2%,
+                transparent 85%
+              );
+
+            .markdown {
+              line-height: 1.5;
+              place-self: center;
+            }
+          }
+        }
+      }
+    }
+  </style>
+
+
+</html>

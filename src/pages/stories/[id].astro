@@ -1,0 +1,15 @@
+---
+import Story from "@/layouts/Story.astro";
+import { stories } from "@/stories";
+
+export async function getStaticPaths() {
+  return stories.map((story) => ({
+    params: { id: story.id },
+    props: { story },
+  }));
+}
+
+const { story } = Astro.props;
+---
+
+<Story {...story} />

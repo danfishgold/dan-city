@@ -1,4 +1,4 @@
-type Project = {
+export type Project = {
   title: string;
   description: string;
   width: 1 | 2 | 3 | 4 | 5;
@@ -26,10 +26,48 @@ export const hebrewProjects: Project[] = [
     url: "/good-signs",
   },
   {
-    title: "בקרוב: מצוקת חניה",
-    description: "ניתוח זמינות החניה בחניוני הלילה של אחוזת החוף",
+    title: "מילון שפת הסימנים",
+    description:
+      "מילון אינטרקטיבי לשפת הסימנים הישראלית. אח״א גנבו לי עליו קרדיט פעם",
+    width: 3,
+    url: "https://isl.danfishgold.com/",
+  },
+  {
+    title: "מצעד ויקיפדיה",
+    description: "100 ערכי ויקיפדיה עם הכי הרבה צפיות בכל יום נתון",
+    width: 3,
+    url: "https://wikipedia-charts.danfishgold.com",
+  },
+  {
+    title: "שירת אימוג׳י",
+    description: "מג׳נרט שירים באימוג׳י",
     width: 2,
-    url: null,
+    url: "https://emoji-poetry.danfishgold.com",
+  },
+  {
+    title: "דפוסים",
+    description: "30 דפוסים של הוקוסאי ב 30 ימים עם p5.js",
+    width: 2,
+    url: "https://codecember19.danfishgold.com",
+  },
+  {
+    title: "Processing",
+    description: "30 פרוייקטי אמנות גנרטיבית ב 30 ימים עם Processing",
+    width: 3,
+    url: "https://codecember18.danfishgold.com",
+  },
+  {
+    title: "רכבות",
+    description:
+      "אפליקציית iOS שכתבתי ב 2016 כתחליף לרשמית. האפליקציה מתה וכל מה שנשאר זה האתר שעשיתי עבורה",
+    width: 3,
+    url: "https://files.dan.city/trains",
+  },
+  {
+    title: "מגנטים",
+    description: "דבר אינטרקטיבי מוזר שמסביר איך מרכיבים מילים בעברית",
+    width: 2,
+    url: "https://files.dan.city/magnets",
   },
 ];
 
