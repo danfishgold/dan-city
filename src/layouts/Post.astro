@@ -3,7 +3,7 @@ import Default from "./Default.astro";
 const { title, time } = Astro.props.frontmatter || Astro.props;
 ---
 
-<Default title={title}>
+<Default title={title} lang="he">
   <header>
     <h1>{title}</h1>
     {time && <time>{time}</time>}

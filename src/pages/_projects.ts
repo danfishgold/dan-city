@@ -45,10 +45,16 @@ export const hebrewProjects: Project[] = [
     url: "https://emoji-poetry.danfishgold.com",
   },
   {
-    title: "דפוסים",
-    description: "30 דפוסים של הוקוסאי ב 30 ימים עם p5.js",
+    title: "מג׳נרט לאסויזם",
+    description: "אתר שמייצר חרוזים בסגנון טד לאסו",
     width: 2,
-    url: "https://codecember19.danfishgold.com",
+    url: "https://lassoism.dan.city",
+  },
+  {
+    title: "בונה בוקמרקלטים",
+    description: "דרך נחמדה להריץ קוד באתרים של אנשים אחרים",
+    width: 3,
+    url: "https://bookmarklet-builder.dan.city",
   },
   {
     title: "Processing",
@@ -57,17 +63,23 @@ export const hebrewProjects: Project[] = [
     url: "https://codecember18.danfishgold.com",
   },
   {
-    title: "רכבות",
-    description:
-      "אפליקציית iOS שכתבתי ב 2016 כתחליף לרשמית. האפליקציה מתה וכל מה שנשאר זה האתר שעשיתי עבורה",
-    width: 3,
-    url: "https://files.dan.city/trains",
+    title: "דפוסים",
+    description: "30 דפוסים של הוקוסאי ב 30 ימים עם p5.js",
+    width: 2,
+    url: "https://codecember19.danfishgold.com",
   },
   {
     title: "מגנטים",
     description: "דבר אינטרקטיבי מוזר שמסביר איך מרכיבים מילים בעברית",
     width: 2,
     url: "https://files.dan.city/magnets",
+  },
+  {
+    title: "רכבות",
+    description:
+      "אפליקציית iOS שכתבתי ב 2016 כתחליף לרשמית. האפליקציה מתה וכל מה שנשאר זה האתר שעשיתי עבורה",
+    width: 3,
+    url: "https://files.dan.city/trains",
   },
 ];
 
@@ -106,27 +118,39 @@ export const englishProjects: Project[] = [
     url: "https://wikipedia-charts.danfishgold.com",
   },
   {
+    title: "Lassoism Generator",
+    description: "Make it rhyme, Optimus Prime",
+    width: 2,
+    url: "https://lassoism.dan.city",
+  },
+  {
     title: "Emoji Poetry",
     description: "Generate poems in emoji!",
-    width: 2,
+    width: 3,
     url: "https://emoji-poetry.danfishgold.com",
+  },
+  {
+    title: "Bookmarklet Builder",
+    description: "Run JavaScript on other people's websites",
+    width: 3,
+    url: "https://bookmarklet-builder.dan.city",
   },
   {
     title: "Patterns",
     description: "30 Japanese patterns recreated in p5.js",
-    width: 3,
+    width: 2,
     url: "https://codecember19.danfishgold.com",
   },
   {
     title: "Magnets",
     description: "A weird interactive Hebrew linguistics explainer",
-    width: 3,
+    width: 2,
     url: "https://files.dan.city/magnets",
   },
   {
     title: "Processing",
     description: "30 generative art projects in Processing",
-    width: 2,
+    width: 3,
     url: "https://codecember18.danfishgold.com",
   },
   {

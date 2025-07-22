@@ -10,23 +10,14 @@ type Props = {
   title: string;
   subtitle: string;
   footer: string;
-  dir?: "rtl" | "ltr";
-  titleFont?: string;
+  lang: "en" | "he";
   projects: ProjectType[];
   stories: Story[];
 };
-const {
-  title,
-  subtitle,
-  projects,
-  stories,
-  dir = "rtl",
-  titleFont = "Brutalist",
-  footer,
-} = Astro.props;
+const { title, subtitle, projects, stories, lang, footer } = Astro.props;
 ---
 
-<Default title={title} dir={dir} titleFont={titleFont}>
+<Default title={title} lang={lang}>
   <CssCityTitle title={title} subtitle={subtitle} />
   <main>
     {
