@@ -2,6 +2,9 @@
 import "./_style.css";
 import telegramLogo from "./_TelegramLogo.svg";
 import thumbnailImage from "./_thumbnail.jpg";
+import p1 from "./_IMG_0287.jpg";
+import p2 from "./_IMG_0289.jpg";
+import p3 from "./_IMG_0288.jpg";
 
 const title = "בוט שיתוף ציבור";
 const description = "ערוץ טלגרם לשיתופי ציבור בתל אביב יפו";
@@ -87,9 +90,7 @@ const imageUrl = new URL(thumbnailImage.src, Astro.site).toString();
       </div>
       <div class="phone-content">
         <div class="message">
-          <img
-            src="https://www.tel-aviv.gov.il/StockImages/תנועה%20וחנייה18.jpg"
-          />
+          <img src={p1.src} />
           <span>
             <strong>מפגש מקוון: תחבורה ציבורית בצפון-מזרח</strong>
             <br />
@@ -108,9 +109,7 @@ const imageUrl = new URL(thumbnailImage.src, Astro.site).toString();
           >
         </div>
         <div class="message">
-          <img
-            src="https://tel-aviv.gov.il/digitelimages2020/eb3870b1907e45a584125d9bbb97ee43.jpg"
-          />
+          <img src={p2.src} />
           <span>
             <strong>מפגש ציבור - הקמת גשר אינשטיין</strong>
             <br />
@@ -127,9 +126,8 @@ const imageUrl = new URL(thumbnailImage.src, Astro.site).toString();
           >
         </div>
         <div class="message">
-          <img
-            src="https://tel-aviv.gov.il/StockImages/עבודות%20תחבורה17.jpg"
-          />
+          <img src={p3.src} />
+
           <span>
             <strong>שיתוף ציבור - שביל אופניים ברחוב יפת</strong>
             <br />
